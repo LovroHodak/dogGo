@@ -67,14 +67,12 @@ Geo Location:
 - GET /signup/volunteer
   - renders signup form for volunteers
 - POST /signup/volunteer
-
   - body:
     - name
     - email
     - password
     - city
   - redirects to /login if successful
-
 - GET /login
   - renders login form for private, orgs, and volunteers
 - POST /login
@@ -84,11 +82,11 @@ Geo Location:
     - password
   - redirects to respective dashboard
 
-- GET /dashboard/:owner
+- GET /owner/
   - renders owner dashboard with dog profiles and Add A Dog button
-- GET /dashboard/:owner/add-a-dog
+- GET /owner/add-a-dog
   - renders form to add a dog profile
-- POST /dashboard/:owner/add-a-dog
+- POST /owner/add-a-dog
   - body:
     - name
     - breed
@@ -98,52 +96,41 @@ Geo Location:
     - description
     - foster
     - walkies
-  - redirect to /dashboard/:owner with new profile added
-- GET /dashboard/:owner/:uniqueDogId/edit
+  - redirect to /owner with new profile added
+- GET /owner/:uniqueDogId/edit
   - renders dog's profile page (add-a-dog page with prefilled values)
-- POST /dashboard/:owner/:uniqueDogId/edit
+- POST /owner/:uniqueDogId/edit
   - body:
     - any changes made
-  - redirect to /dashboard/:owner with edited profile
-- GET /dashboard/:owner/:uniqueDogId/delete
+  - redirect to /owner with edited profile
+- GET /owner/:uniqueDogId/delete
   - deletes dog with that unique id
-- GET /dashboard/:owner/:uniqueDogId/messages
+- GET /owner/:uniqueDogId/messages
   - renders mailbox for that dog
-- GET /dashboard/:owner/:uniqueDogId/:volunteerId
+- GET /owner/:messageId
   - renders messages with that specific volunteer
-- POST /dashboard/:owner/:uniqueDogId/:volunteerId
+  - validate that this message can only be accessed by this dog
+- POST /owner/:messageId
 
-  - ...TBD
-
-- GET /dashboard/volunteer
+- GET /volunteer
   - renders volunteer dashboard showing dogs they've messaged and search button
-- GET /dashboard/volunteer/search
+- GET /volunteer/search
   - renders dog profiles within same city with additional filters offered
-- GET /dashboard/:uniqueDogId/:volunteerId
+- GET /volunteer/:messageId
   - renders conversation with that specific dog
-- POST /dashboard/:uniqueDogId/:volunteerId
-  - ...TBD
-  - redirect to /dashboard/volunteer with newly messaged dog added
+- POST /volunteer/:messageId
+  - redirect to /volunteer with newly messaged dog added
 
 ## Models
 
-ownerModel ('owner', ownerSchema)
+hoomanModel ('hooman', hoomanSchema)
 
 ```
 {email: String, required
 password: String, required
 name: String
-city: String}
-{timestamps: true}
-```
-
-volunteerModel ('volunteer', volunteerSchema)
-
-```
-{email: String, required
-password: String, required
-name: String
-city: String}
+city: String
+type: String [enum]}
 {timestamps: true}
 ```
 
@@ -166,8 +153,11 @@ Message model
 
 ```
 body: String
- myDoggo: {type: mongoose.Schema.Types.ObjectId
+ doggo: {type: mongoose.Schema.Types.ObjectId
  ref: 'doggo'}
+ volunteer: {type: mongoose.Schema.Types.ObjectId
+ ref: 'hooman'}
+
 ```
 
 ## Links
