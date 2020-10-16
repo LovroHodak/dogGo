@@ -116,6 +116,8 @@ Geo Location:
   - renders volunteer dashboard showing dogs they've messaged and search button
 - GET /volunteer/search
   - renders dog profiles within same city with additional filters offered
+- GET /volunteer/:uniqueDogId
+  - render detailed dog profile from dog card
 - GET /volunteer/:messageId
   - renders conversation with that specific dog
 - POST /volunteer/:messageId
@@ -164,13 +166,13 @@ body: String
 
 ### Trello
 
-[Link to your trello board](https://trello.com) or picture of your physical board
+[Link to your trello board](https://trello.com/b/A0q880F3/doggo-app)
 
 ### Git
 
 The url to your repository and to your deployed project
 
-[Repository Link](http://github.com)
+[Repository Link](https://github.com/scmendez/dogGo)
 
 [Deploy Link](http://heroku.com)
 
