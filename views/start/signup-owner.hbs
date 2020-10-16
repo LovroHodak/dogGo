@@ -1,7 +1,7 @@
 <h2>hello owner</h2>
 
-<form method="POST" action="/signup/owner">
-  <input type="radio" name="hoomanType" value="private">Individual
+<form method="POST" action="/signup">
+  <input type="radio" name="hoomanType" value="private" checked="checked">Individual
   <input type="radio" name="hoomanType" value="org">Organisation
 
   <br>
@@ -18,9 +18,14 @@
 
   <label>Password</label>
   <input type="password" name="password" placeholder="Enter your Password">
+  <p>Password requirements:</p>
 
   <br>
 
   <button type="submit">Sign Up</button>
 
 </form>
+
+{{#if errorMessage}}
+{{errorMessage}}
+{{/if}}

@@ -9,6 +9,8 @@ const mongoose     = require('mongoose');
 const logger       = require('morgan');
 const path         = require('path');
 
+const hoomanModel = require('./models/hooman.model')
+
 
 require('./config/db.config')
 
@@ -30,6 +32,22 @@ app.use(require('node-sass-middleware')({
   dest: path.join(__dirname, 'public'),
   sourceMap: true
 }));
+
+const session = require('express-session');
+const MongoStore = require('connect-mongo')(session);
+ 
+app.use(session({
+    secret: 'Secret',
+    saveUninitialized: false,
+    resave: false, //don't save session if unmodified
+    cookie: {
+      maxAge: 24*60*60*1000 //in milliseconds
+    },
+    store: new MongoStore({
+      mongooseConnection: mongoose.connection,
+      ttl: 24*60*60
+    })
+}));
       
 
 app.set('views', path.join(__dirname, 'views'));
@@ -46,6 +64,23 @@ app.locals.title = 'Express - Generated with IronGenerator';
 
 const index = require('./routes/index');
 app.use('/', index);
+
+const privateRoutes = (req, res, next) => {
+  if (req.session.loggedInUser) {
+    next()
+  }
+  else {
+    res.redirect('/login')
+  }
+}
+
+app.use(privateRoutes)
+
+const volunteerRoutes = require('./routes/volunteer');
+app.use('/', volunteerRoutes);
+
+const ownerRoutes = require('./routes/owner');
+app.use('/', ownerRoutes);
 
 
 module.exports = app;

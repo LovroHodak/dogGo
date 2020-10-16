@@ -1,0 +1,47 @@
+<h2>add a dog form</h2>
+
+<form method="POST" action="/add-a-dog">
+
+  <label>Name</label>
+  <input type="text" name="name" placeholder="Enter dog's name">
+
+  <br>
+
+  <label>Breed</label>
+  <input type="text" name="breed" placeholder="Enter dog's breed">
+
+  <br>
+
+  <label>Size</label>
+  <input type="text" name="size" placeholder="Enter dog's size">
+
+  <br>
+
+  <label>Age</label>
+  <input type="text" name="age" placeholder="Enter dog's age">
+
+  <br>
+
+  <label>Gender</label>
+  <input type="text" name="gender" placeholder="Enter dog's gender">
+
+  <br>
+
+  <label>Description</label>
+  <input type="text" name="description" placeholder="Enter description">
+
+  <br>
+
+  <input type="checkbox" name="foster" value="foster">Foster
+  <input type="checkbox" name="walkies" value="walkies">Walkies
+
+  <br>
+
+
+  <button type="submit">Add a dog!</button>
+
+</form>
+
+{{#if errorMessage}}
+{{errorMessage}}
+{{/if}}
