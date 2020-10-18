@@ -1,4 +1,19 @@
 <h2>owner dashboard</h2>
 
 <a href="/logout">Logout</a>
+<br>
 <a href="/owner/add-a-dog">Add a dog</a>
+<br>
+{{#if doggoData}}
+{{doggoData.name}}
+<br>
+{{doggoData.breed}}
+<br>
+    {{#if doggoData.walkies}}
+    <p>Available for walkies!</p>
+    {{/if}}
+    <br>
+    {{#if doggoData.foster}}
+    <p>Available for fostering!</p>
+    {{/if}}
+{{/if}}

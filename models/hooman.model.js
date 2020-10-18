@@ -19,7 +19,10 @@
     hoomanType: {
       type: String,
       enum: ['private', 'org', 'volunteer']
-  }
+  },  
+    myDoggos: {
+      type: [Object],
+  }     
 },
 {
   timestamps: true
