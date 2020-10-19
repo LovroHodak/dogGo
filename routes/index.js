@@ -94,10 +94,8 @@ router.post('/login', (req, res) => {
 
       bcrypt.compare(password, hoomanData.password)
         .then((result) => {
-          console.log(result)
           if (result) {
             req.session.loggedInUser = hoomanData
-            console.log(req.session)
             if (hoomanData.hoomanType == "volunteer") {
                 res.redirect('/volunteer')
               }

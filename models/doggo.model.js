@@ -21,7 +21,12 @@ let doggoSchema = new mongoose.Schema(
     walkies: Boolean,
     myOwner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'hooman'}
+      ref: 'hooman'
+    },
+    myMessages: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'message'
+    } 
   }
 )
 
