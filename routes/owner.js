@@ -10,7 +10,7 @@ router.get('/owner', (req, res) => {
   res.render('./owner/owner-dashboard')
 })
 
-router.get('/owner/get-a-dog', (req, res) => {
+router.get('/owner/add-a-dog', (req, res) => {
   res.render('./owner/add-a-dog-form')
 })
 
