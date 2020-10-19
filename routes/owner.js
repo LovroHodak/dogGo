@@ -26,7 +26,7 @@ router.post('/owner/add-a-dog', (req, res) => {
   console.log(hoomanData)
   doggoModel.create( { name, breed, size, age, gender, description, foster, walkies, myOwner : hoomanData._id } )
       .then((doggoData) =>{
-        hoomanModel.findByIdAndUpdate( hoomanData._id  , { $set: { myDoggos: req.body } } )
+      hoomanModel.findByIdAndUpdate( hoomanData._id,{ $push: { myDoggos: [req.body] } } )
         res.render('./owner/owner-dashboard',{doggoData})
       })
 })
