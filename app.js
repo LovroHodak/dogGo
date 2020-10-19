@@ -76,11 +76,14 @@ const privateRoutes = (req, res, next) => {
 
 app.use(privateRoutes)
 
+const ownerRoutes = require('./routes/owner');
+app.use('/', ownerRoutes);
+
 const volunteerRoutes = require('./routes/volunteer');
 app.use('/', volunteerRoutes);
 
-const ownerRoutes = require('./routes/owner');
-app.use('/', ownerRoutes);
+const messageRoutes = require('./routes/message');
+app.use('/', messageRoutes);
 
 
 module.exports = app;

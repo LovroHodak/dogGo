@@ -1,0 +1,21 @@
+<a href="/volunteer/search">Back to search</a>
+
+<h2>Meet {{foundDoggo.name}}!</h2>
+
+<div>
+  Breed: {{ foundDoggo.breed }}
+  <br>
+  Age: {{ foundDoggo.age}}
+  <br>
+  Size: {{ foundDoggo.size }}
+
+  Description: {{ foundDoggo.description }}
+  {{#if foundDoggo.walkies}}
+  <p>Available for walkies!</p>
+  {{/if}}
+  <br>
+  {{#if foundDoggo.foster}}
+  <p>Available for fostering!</p>
+  {{/if}}
+  <a href="/volunteer/{{foundDoggo._id}}/messages">Message</a>
+</div>

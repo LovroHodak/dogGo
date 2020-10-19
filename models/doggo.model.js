@@ -17,6 +17,9 @@ let doggoSchema = new mongoose.Schema(
       type: String,
       maxlength: 140
     },
+    city: {
+      type: String,
+    },
     foster: Boolean,
     walkies: Boolean,
     myOwner: {
@@ -29,6 +32,8 @@ let doggoSchema = new mongoose.Schema(
     } 
   }
 )
+
+//require certain info before deployment!
 
 let doggoModel = mongoose.model('doggo', doggoSchema)
 
