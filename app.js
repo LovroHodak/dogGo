@@ -13,6 +13,7 @@ const hoomanModel = require('./models/hooman.model')
 
 
 require('./config/db.config')
+require('./config/cloudinary.config.js')
 
 const app_name = require('./package.json').name;
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`);
@@ -76,11 +77,17 @@ const privateRoutes = (req, res, next) => {
 
 app.use(privateRoutes)
 
+const ownerRoutes = require('./routes/owner');
+app.use('/', ownerRoutes);
+
 const volunteerRoutes = require('./routes/volunteer');
 app.use('/', volunteerRoutes);
 
-const ownerRoutes = require('./routes/owner');
-app.use('/', ownerRoutes);
+const messageRoutes = require('./routes/message');
+app.use('/', messageRoutes);
+
+const imageRoutes = require('./routes/file-upload.routes');
+app.use('/', imageRoutes);
 
 
 module.exports = app;

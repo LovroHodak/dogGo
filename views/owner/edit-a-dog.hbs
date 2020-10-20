@@ -1,37 +1,21 @@
-<h2>add a dog form</h2>
+<h2>edit a dog form</h2>
 
-
-{{#if imagePath}}
-<img src="{{imagePath}}" alt="">
-
-{{else}}
-
-<form method="POST" action="/upload">
-      <input type="file" name="imageUrl" accept="image/png, image/jpg">
-      <button type="submit">add an image</button> 
-</form> 
-
-{{/if}}
-
-<form method="POST" action="/owner/add-a-dog">
-<input type="hidden" name="imageUrl" value="{{imagePath}}">
-
-  <br>
-
+<form method="POST" action="/owner/{{toBeEditedDoggo._id}}/edit-a-dog">
 
   <label>Name</label>
-  <input type="text" name="name" placeholder="Enter dog's name">
+  <input type="text" name="name" value="{{ toBeEditedDoggo.name }}">
 
   <br>
 
   <label>Breed</label>
-  <input type="text" name="breed" placeholder="Enter dog's breed">
+  <input type="text" name="breed" value="{{ toBeEditedDoggo.breed }}">
 
   <br>
 
   <label>Size</label>
   {{!-- <input type="text" name="size" placeholder="Enter dog's size">   --}}
   <select name="size" id="doggoSize">
+    <option value="{{ toBeEditedDoggo.size }}">{{ toBeEditedDoggo.size }}</option>
     <option value="Small">Small</option>
     <option value="Medium">Medium</option>
     <option value="Large">Large</option>
@@ -41,13 +25,14 @@
   <br>
 
   <label>Age</label>
-  <input type="text" name="age" placeholder="Enter dog's age">
+  <input type="text" name="age" value="{{ toBeEditedDoggo.age }}">
 
   <br>
 
   <label>Gender</label>
   {{!-- <input type="text" name="gender" placeholder="Enter dog's gender"> --}}
   <select name="gender" id="doggoGender">
+    <option value="{{ toBeEditedDoggo.gender }}">{{ toBeEditedDoggo.gender }}</option>
     <option value="Male">Male</option>
     <option value="Female">Female</option>
     <option value="N/A">N/A</option>
@@ -57,21 +42,30 @@
 
   <label>Description</label>
   <br>
-  <input type="text" name="description" placeholder="Enter description">
+  <input type="text" name="description" value="{{ toBeEditedDoggo.description }}">
 
   <br>
 
   <label>City</label>
   <br>
-  <input type="text" name="city" placeholder="Enter city dog is located in">
+  <input type="text" name="city" value="{{ toBeEditedDoggo.city }}">
 
+  {{#if toBeEditedDoggo.foster}}
+  <input type="checkbox" name="foster" value="true" checked="true">Foster
+  {{else}}
   <input type="checkbox" name="foster" value="true">Foster
+  {{/if}}
+
+  {{#if toBeEditedDoggo.walkies}}
+  <input type="checkbox" name="walkies" value="true" checked="true">Walkies
+  {{else}}
   <input type="checkbox" name="walkies" value="true">Walkies
+  {{/if}}
 
   <br>
   <input type="hidden" name="myOwner" value={}>
 
-  <button type="submit">Add a dog!</button>
+  <button type="submit">Edit dog</button>
 
 </form>
 

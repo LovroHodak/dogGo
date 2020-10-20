@@ -1,0 +1,13 @@
+<h2>message from {{message.volunteer.name}}</h2>
+
+{{#each message.body}}
+<h5>
+    {{this}}
+</h5>
+{{/each}}
+
+
+<form method="POST" action="/owner/{{message.doggo._id}}/{{message._id}}">
+  <textarea name="body"></textarea>
+  <input type="submit">
+</form>

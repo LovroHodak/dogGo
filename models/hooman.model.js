@@ -20,9 +20,9 @@
       type: String,
       enum: ['private', 'org', 'volunteer']
   },  
-    myDoggos: {
-      type: [Object],
-  }     
+    myDoggos: [{
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'doggo'}]
 },
 {
   timestamps: true

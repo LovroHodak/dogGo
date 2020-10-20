@@ -1,19 +1,29 @@
 <h2>owner dashboard</h2>
-
+<br>
+<a href="/owner/{{owner._id}}/edit-owner">Edit my Profile</a>
+<br>
 <a href="/logout">Logout</a>
 <br>
 <a href="/owner/add-a-dog">Add a dog</a>
 <br>
-{{#if doggoData}}
-{{doggoData.name}}
-<br>
-{{doggoData.breed}}
-<br>
-    {{#if doggoData.walkies}}
+
+
+{{#each doggoArr}}
+<div>
+     <br>
+    {{this.name}}
+    <br>
+    {{this.breed}}
+    <br>
+    {{#if this.walkies}}
     <p>Available for walkies!</p>
     {{/if}}
     <br>
-    {{#if doggoData.foster}}
+    {{#if this.foster}}
     <p>Available for fostering!</p>
     {{/if}}
-{{/if}}
+    <a href="/owner/{{this._id}}/edit-a-dog">Edit</a>
+    <a href="/owner/{{this._id}}/delete">Delete</a>
+    <a href="/owner/{{this._id}}/messages">Message</a>
+</div>
+{{/each}}

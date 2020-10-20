@@ -1,0 +1,42 @@
+<a href="/logout">Logout</a>
+
+<form action="/volunteer/search/filter" method="GET">
+
+  {{#if foster}}
+  <input type="checkbox" name="foster" value="true" checked="true">Foster
+  {{else}}
+  <input type="checkbox" name="foster" value="true">Foster
+  {{/if}}
+
+  {{#if walkies}}
+  <input type="checkbox" name="walkies" value="true" checked="true">Walkies
+  {{else}}
+  <input type="checkbox" name="walkies" value="true">Walkies
+  {{/if}}
+
+  <button type="submit">Filter dogs</button>
+</form>
+
+
+{{#each allDoggos}}
+
+<div>
+  {{this.name}}
+  <br>
+  {{this.breed}}
+  <br>
+  {{#if this.walkies}}
+  <p>Available for walkies!</p>
+  {{/if}}
+  <br>
+  {{#if this.foster}}
+  <p>Available for fostering!</p>
+  {{/if}}
+  <a href="/volunteer/{{this._id}}/profile">More info</a>
+</div>
+
+{{/each}}
+
+{{#if errorMessage}}
+{{errorMessage}}
+{{/if}}

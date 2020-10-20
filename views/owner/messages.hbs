@@ -1,0 +1,9 @@
+<h2>messages page</h2>
+
+{{#each messageArr}}
+<a href="/owner/{{this._id}}">{{this.volunteer.name}}</a>
+{{/each}}
+{{!-- <form method="post" action="contact.php">
+  <textarea name="message"></textarea>
+  <input type="submit">
+</form> --}}

@@ -17,13 +17,27 @@ let doggoSchema = new mongoose.Schema(
       type: String,
       maxlength: 140
     },
+    city: {
+      type: String,
+    },
     foster: Boolean,
     walkies: Boolean,
     myOwner: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'hooman'}
+      ref: 'hooman'
+    },
+    myMessages: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'message'
+    } ,
+    imageUrl:{
+      type: String,
+
+    }
   }
 )
+
+//require certain info before deployment!
 
 let doggoModel = mongoose.model('doggo', doggoSchema)
 
