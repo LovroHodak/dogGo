@@ -27,13 +27,13 @@ router.get('/owner/add-a-dog', (req, res) => {
 
 ///rendering the add-a-dog form
 router.post('/owner/add-a-dog', (req, res) => {
-  const {name, breed, size, age, gender, description, city, foster, walkies, imageURL} = req.body
+  const {name, breed, size, age, gender, description, city, foster, walkies, imageUrl} = req.body
 
   let hoomanData = req.session.loggedInUser
 
   console.log(hoomanData)
 
-  doggoModel.create( { name, breed, size, age, gender, description, city, foster, walkies, imageURL, myOwner : hoomanData._id } )
+  doggoModel.create( { name, breed, size, age, gender, description, city, foster, walkies, imageUrl, myOwner : hoomanData._id } )
       .then((doggoData) =>{
         hoomanModel.findByIdAndUpdate( hoomanData._id  , { $push: { myDoggos: doggoData._id } } )
         res.redirect('/owner')

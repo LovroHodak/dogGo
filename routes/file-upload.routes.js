@@ -8,9 +8,6 @@ const doggoModel = require('../models/doggo.model')
 // include CLOUDINARY:
 const uploader = require('../config/cloudinary.config.js');
 
-// router.post("/upload", (req, res) => {
-//   console.log(req.body)
-// })
 
 
 router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {

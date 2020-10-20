@@ -6,8 +6,8 @@
 
 {{else}}
 
-<form method="POST" action="/upload">
-      <input type="file" name="imageUrl" accept="image/png, image/jpg">
+<form method="POST" action="/upload" enctype="multipart/form-data">
+      <input type="file" name="imageUrl" >
       <button type="submit">add an image</button> 
 </form> 
 
