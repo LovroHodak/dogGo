@@ -1,3 +1,5 @@
+///-----layout---////
+
 body {
   // padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
@@ -5,7 +7,6 @@ body {
 }
 
 .container{
-
   padding-top: 50px;
 }
 
@@ -20,11 +21,22 @@ body {
  position: relative;
 }
 
+#landingImg2{
+  width: 50%;
+  position: relative;
+  margin-left: 10%;
+  margin-bottom: 50%;
+ }
+
 .form-group{
   width: 50%;
 
 }
 
+.profile-card {
+  display: flex;
+  flex-direction: row;
+}
 ///-----text---////
 h1{
   color: white;
@@ -34,6 +46,8 @@ h1{
   color: white;
 }
 
+
+///----- graphic elements---////
 hr {
   color: white;
   background-color: white;
@@ -45,24 +59,41 @@ hr {
 .secondary-nav {
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  // justify-content: flex-end;
+  align-content: center;
+  
+}
+
+.search-field {
+  border: solid 1px grey;
+  height: 30px;
+  padding-left: 5px;
+  margin: 10px;
 }
 
 
 ///---search---///
-#search{
+.search {
   display: flex;
   flex-direction: row;
-  margin-right: 10px;
-  align-items: center;
+  flex-wrap: wrap;
   justify-content: flex-end;
+  justify-items: baseline;
+  align-items:baseline ;
+}
+.checkbox {
+  margin: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items:baseline ;
 }
 
-.search-check {
-  margin-top: 15px;
-  margin-right: 30px;
-}
 
+.checkbar {
+  display: flex;
+  flex-direction: row;
+}
 
 .form-check-input {
   align-items: center;
@@ -77,7 +108,7 @@ hr {
   margin:10px 10px 10px 0;
 }
 
-#signup {
+#transparent-btn {
   background-color: #53d2dc;
   border-color: white;
 }
@@ -127,6 +158,35 @@ hr {
 
 .image {
   display:block; /*remove inline-block spaces*/
-  width:100%; /*make image streatch*/
+  width:100%; /*make image stretch*/
   margin:-50.875% 0;
 }
+
+
+.image-profile-container {
+  width:400px;
+  height:400px;
+  margin: 25px auto;
+  overflow: hidden;
+  border-radius:50%;
+  position: relative;
+  margin-right: 30px;
+}
+
+
+.image-profile-container img{
+  position: absolute;
+  width: 400px;
+  margin: -20.875% 0;
+  // top:20%;
+  // left:20%;
+  // transform: translate(-50%,-50%)
+  
+}
+
+// .image-profile {
+//   height: 400px;
+//   position: relative;
+//   margin: 0 -20.875%;
+  
+// }
