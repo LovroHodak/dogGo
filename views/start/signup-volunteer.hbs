@@ -1,32 +1,38 @@
-<h2>hello volunteer</h2>
+<h1>Volunteer? </h1>
+<p class="copy"> You are very welcome to fill this form:
+</p>
 
-<form method="POST" action="/signup">
+
+<hr>
+
+
+<form method="POST" action="/signup" class="form-group" >
   <input type="hidden" name="hoomanType" value="volunteer">
 
   <br>
 
-  <label>Name</label>
-  <input type="text" name="name" placeholder="Enter your name">
+  <label class="copy">Name</label>
+  <input type="text" name="name" placeholder="Enter your name" class="form-control">
 
   <br>
 
-  <label>City</label>
-  <input type="text" name="city" placeholder="Enter your city">
+  <label class="copy">City</label>
+  <input type="text" name="city" placeholder="Enter your city" class="form-control">
 
   <br>
 
-  <label>Email</label>
-  <input type="`text" name="email" placeholder="Enter your email">
+  <label class="copy">Email</label>
+  <input type="`text" name="email" placeholder="Enter your email" class="form-control">
 
   <br>
 
-  <label>Password</label>
-  <input type="password" name="password" placeholder="Enter your Password">
-  <p>Password requirements:</p>
+  <label class="copy">Password</label>
+  <input type="password" name="password" placeholder="Enter your Password" class="form-control">
+  <p class="copy">Password requirements:</p>
 
   <br>
 
-  <button type="submit">Sign Up</button>
+  <button type="submit" class="btn btn-primary" >Sign Up</button>
 
 </form>
 

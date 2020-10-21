@@ -1,28 +1,40 @@
-<h2>hello owner</h2>
+<h1>Oh, hey owner!</h1>
+<p class="copy"> Just fill this form and you will be able to get some help!
+</p>
 
-<form method="POST" action="/signup">
-  <input type="radio" name="hoomanType" value="private" checked="checked">Individual
-  <input type="radio" name="hoomanType" value="org">Organisation
 
-  <br>
+<hr>
 
-  <label>Name</label>
-  <input type="text" name="name" placeholder="Enter your name">
+<form method="POST" action="/signup" class="form-group">
+<div class="secondary-nav">
+  <div class="radio">
+       <input type="radio" name="hoomanType" value="private" checked="checked" > <p class="copy" class="radio">Individual</p> 
+  </div>
+ <div class="radio">
+     <input type="radio" name="hoomanType" value="org"><p class="copy" >Organisation</p> 
+ </div>
 
-  <br>
-
-  <label>Email</label>
-  <input type="`text" name="email" placeholder="Enter your email">
-
-  <br>
-
-  <label>Password</label>
-  <input type="password" name="password" placeholder="Enter your Password">
-  <p>Password requirements:</p>
+</div>
 
   <br>
 
-  <button type="submit">Sign Up</button>
+  <label class="copy">Name</label>
+  <input type="text" name="name" placeholder="Enter your name" class="form-control">
+
+  <br>
+
+  <label class="copy">Email</label>
+  <input type="`text" name="email" placeholder="Enter your email" class="form-control">
+
+  <br>
+
+  <label class="copy">Password</label>
+  <input type="password" name="password" placeholder="Enter your Password" class="form-control">
+  <p class="copy">Password requirements:</p>
+
+  <br>
+
+  <button type="submit" class="btn btn-primary" >Sign Up</button>
 
 </form>
 

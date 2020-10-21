@@ -1,18 +1,22 @@
-<a href="/landing-signup">Signup</a>  
-<h2>this is a login page</h2>
+<a href="/landing-signup" class="btn btn-secondary" id="signup">Signup</a>  
+<hr>
+<h1>Login</h1>
+<p class="copy"> we are happy to see you're back!
+</p>
 
-<form method="POST" action="/login">
-  <label>Email</label>
-  <input type="text" name="email" placeholder="Enter your email">
-
-  <br>
-
-  <label>Password</label>
-  <input type="password" name="password" placeholder="Enter your Password">
+<form method="POST" action="/login" class="form-group">
+  <label class="copy">Email</label>
+  <input type="text" name="email" placeholder="Enter your email" class="form-control">
 
   <br>
 
-  <button type="submit">Log in</button>
+  <label class="copy">Password</label>
+  <input type="password" name="password" placeholder="Enter your Password" class="form-control">
+
+  <br>
+  
+  <button type="submit" class="btn btn-primary">Log in</button>
+
 
 </form>
 

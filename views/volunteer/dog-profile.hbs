@@ -1,22 +1,30 @@
-<a href="/volunteer/search">Back to search</a>
+<a href="/volunteer/search" class="btn btn-secondary" id="signup">Back to search</a>
 
-<h2>Meet {{foundDoggo.name}}!</h2>
+<h1>Meet {{foundDoggo.name}}!</h1>
 
-<div>
-  <img src="{{foundDoggo.imageURL}}" alt="Image-of-Doggo">
+    <div class="card">
+        <div class="card-body">
+  <img src="{{foundDoggo.imageUrl}}" alt="Image-of-Doggo">
+<h2>
+  Breed: {{ foundDoggo.breed }}
+</h2>
   Breed: {{ foundDoggo.breed }}
   <br>
   Age: {{ foundDoggo.age}}
   <br>
   Size: {{ foundDoggo.size }}
 
+
   Description: {{ foundDoggo.description }}
+
   {{#if foundDoggo.walkies}}
   <p>Available for walkies!</p>
   {{/if}}
-  <br>
   {{#if foundDoggo.foster}}
   <p>Available for fostering!</p>
   {{/if}}
-  <a href="/volunteer/{{foundDoggo._id}}/messages">Message</a>
+<div class="secondary-nav">
+  <a href="/volunteer/{{foundDoggo._id}}/messages" class="btn btn-primary">Message</a>
 </div>
+      </div>
+    </div>
