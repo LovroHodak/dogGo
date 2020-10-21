@@ -13,7 +13,7 @@ router.get('/volunteer', (req, res) => {
 router.get('/volunteer/search', (req, res) => {
   let volunteerCity = req.session.loggedInUser.city
 
-  doggoModel.find({city: volunteerCity})
+  doggoModel.find()
     .then((allDoggos) => {
       if (allDoggos.length > 0) {
         res.render('./volunteer/search', {allDoggos})
@@ -33,29 +33,27 @@ doggoModel.findById(id)
 })
 
 router.get('/volunteer/search/filter', (req, res) => {
-  let volunteerCity = req.session.loggedInUser.city
 
+  let searchedCity = req.query.city
   let fosterValue = req.query.foster
   let walkiesValue = req.query.walkies
 
-  console.log(fosterValue)
-  console.log(walkiesValue)
-
-if (fosterValue === "true" && walkiesValue == undefined) {
-  doggoModel.find({city: volunteerCity, foster: true})
+if (searchedCity && fosterValue === "true" && walkiesValue == undefined) {
+  doggoModel.find({city: searchedCity, foster: true})
     .then((allDoggos) => {
       res.render('./volunteer/search', {allDoggos, foster: true})
     })
-  } else if (fosterValue == undefined && walkiesValue === "true") {
-    doggoModel.find({city: volunteerCity, walkies: true})
+  } else if (searchedCity && fosterValue == undefined && walkiesValue === "true") {
+    doggoModel.find({city: searchedCity, walkies: true})
       .then((allDoggos) => {
       res.render('./volunteer/search', {allDoggos, walkies: true})
     })
-  } else if (!fosterValue && !walkiesValue) {
-      res.render('./volunteer/search', {errorMessage: 'Choose filters'})
+  } else if (!searchedCity && !fosterValue && !walkiesValue) {
+      res.render('./volunteer/search', {errorMessage: 'Choose city and filters'})
   } else {
-      doggoModel.find({city: volunteerCity})
+      doggoModel.find()
     .then((allDoggos) => {
+      console.log('else, all doggos', allDoggos)
       if (allDoggos.length > 0) {
         res.render('./volunteer/search', {allDoggos, foster: true, walkies: true})
       } else {
@@ -64,5 +62,6 @@ if (fosterValue === "true" && walkiesValue == undefined) {
       })
   }
       })
+      //FINISH THE CITY SEARCH OPTIONS
 
 module.exports = router;

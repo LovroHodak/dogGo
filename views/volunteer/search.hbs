@@ -1,4 +1,4 @@
-<a href="/logout" class="btn btn-secondary" id="signup" >Logout</a>
+<a href="/logout" class="btn btn-secondary" id="signup">Logout</a>
 
 <hr>
 
@@ -9,56 +9,70 @@
 
 <div id="search">
 
-    <div class="secondary-nav">
-<form action="/volunteer/search/filter" method="GET" id="search">
+  <div class="secondary-nav">
+    <form action="/volunteer/search/filter" method="GET" id="search">
 
-<div class="search-check" class="form-check">
-  {{#if foster}}
-  <input class="form-check-input" type="checkbox" name="foster" value="true" checked="true"><p class="copy"> Foster </p> </label>
-  {{else}}
-  <input class="form-check-input" type="checkbox" name="foster" value="true"><p class="copy"> Foster </p> </label>
-  {{/if}}
-</div>
-<div class="search-check" class="form-check">
-  {{#if walkies}}
-  <input class="form-check-input" type="checkbox" name="walkies" value="true" checked="true"><p class="copy"> Walkies </p></label>
-  {{else}}
-  <input class="form-check-input" type="checkbox" name="walkies" value="true"><p class="copy"> Walkies </p></label>
-  {{/if}}
-</div>
-  <button type="submit" class="btn btn-primary">Filter dogs</button>
-</form>
+      <div class="search-check" class="form-check">
+        <input class="form-control mr-sm-2" type="search" placeholder="Enter a city" aria-label="Search" name="city">
 
-    </div>
+        {{#if foster}}
+        <input class="form-check-input" type="checkbox" name="foster" value="true" checked="true">
+        <label>
+          <p class="copy"> Foster </p>
+        </label>
+        {{else}}
+        <input class="form-check-input" type="checkbox" name="foster" value="true">
+        <label>
+          <p class="copy"> Foster </p>
+        </label>
+        {{/if}}
+      </div>
+      <div class="search-check" class="form-check">
+        {{#if walkies}}
+        <input class="form-check-input" type="checkbox" name="walkies" value="true" checked="true">
+        <label>
+          <p class="copy"> Walkies </p>
+        </label>
+        {{else}}
+        <input class="form-check-input" type="checkbox" name="walkies" value="true">
+        <label>
+          <p class="copy"> Walkies </p>
+        </label>
+        {{/if}}
+      </div>
+      <button type="submit" class="btn btn-primary">Filter dogs</button>
+    </form>
+
+  </div>
 </div>
 
 <div class="dashboard">
-{{#each allDoggos}}
+  {{#each allDoggos}}
 
-<div class="card" style="width: 18rem;">
+  <div class="card" style="width: 18rem;">
     <div class="card-body">
-     <h2 class="card-title">
-         {{this.name}}
-   
-     </h2>
- 
-     <h5>
-         {{this.breed}}  
-     </h5>
-     <p class="card-text">
-  {{#if this.walkies}}
-  <p>Available for walkies!</p>
-  {{/if}}
-  <br>
-  {{#if this.foster}}
-  <p>Available for fostering!</p>
-  {{/if}}
-  </p>
-  <a href="/volunteer/{{this._id}}/profile" class="badge badge-pill badge-primary">More info</a> 
-    </div>
-</div>
+      <h2 class="card-title">
+        {{this.name}}
 
-{{/each}}
+      </h2>
+
+      <h5>
+        {{this.breed}}
+      </h5>
+      <p class="card-text">
+        {{#if this.walkies}}
+      <p>Available for walkies!</p>
+      {{/if}}
+      <br>
+      {{#if this.foster}}
+      <p>Available for fostering!</p>
+      {{/if}}
+      </p>
+      <a href="/volunteer/{{this._id}}/profile" class="badge badge-pill badge-primary">More info</a>
+    </div>
+  </div>
+
+  {{/each}}
 
 </div>
 
