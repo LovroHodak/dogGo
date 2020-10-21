@@ -27,9 +27,9 @@ router.get('/signup/volunteer', (req, res) => {
 
 // signup - post for both signup forms
 router.post('/signup', (req, res) => {
-  const {email, password, name, hoomanType} = req.body
+  const {email, password, name, hoomanType, city} = req.body
 
-if (!name || !email || !password || !hoomanType) {
+if (!name || !email || !password || !hoomanType ) {
   if (req.body.hoomanType == "volunteer") {
   res.status(500).render('./start/signup-volunteer', {errorMessage: 'Please fill in all information'})
   return;
@@ -68,7 +68,7 @@ res.status(500).render('./start/signup-owner', {errorMessage: 'Please fill in al
     .then((salt) => {
       bcrypt.hash(password, salt)
         .then((hashedPassword) => {
-          hoomanModel.create({name, email, password: hashedPassword, hoomanType})
+          hoomanModel.create({name, email, city, password: hashedPassword, hoomanType})
             .then(() => {
               res.redirect('/login') //login page
             })
@@ -94,10 +94,8 @@ router.post('/login', (req, res) => {
 
       bcrypt.compare(password, hoomanData.password)
         .then((result) => {
-          console.log(result)
           if (result) {
             req.session.loggedInUser = hoomanData
-            console.log(req.session)
             if (hoomanData.hoomanType == "volunteer") {
                 res.redirect('/volunteer')
               }

@@ -1,0 +1,12 @@
+<h1>Message {{convo.doggo.name}}</h1>
+
+{{#each convo.body}}
+<h5>
+    {{this}}
+</h5>
+{{/each}}
+
+<form method="POST" action="/volunteer/{{convo._id}}" >
+  <textarea name="body"></textarea>
+  <input type="submit" class="btn btn-primary"s>
+</form>

@@ -1,0 +1,29 @@
+<h1>Edit your profile</h1>
+<p class="copy"> Wanna change something?
+</p>
+
+<form method="POST" action="/owner/{{owner._id}}/edit-owner">
+  <input type="radio" name="hoomanType" value="private" checked="checked">Individual
+  <input type="radio" name="hoomanType" value="org">Organisation
+
+  <br>
+
+  <label>Name</label>
+  <input type="text" name="name" value="{{ owner.name }}">
+
+  <br>
+
+  <label>Email</label>
+  <input type="`text" name="email" value="{{ owner.email }}">
+
+  <br>
+
+  <label>Password</label>
+  <input type="password" name="password" value="{{ owner.password }}">
+  <p>Password requirements:</p>
+
+  <br>
+
+  <button type="submit">Edit</button>
+
+</form>

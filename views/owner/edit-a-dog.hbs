@@ -1,0 +1,76 @@
+<h1>Edit you dog profile</h1>
+<p class="copy"> Wanna change something?
+</p>
+
+<form method="POST" action="/owner/{{toBeEditedDoggo._id}}/edit-a-dog">
+
+  <label>Name</label>
+  <input type="text" name="name" value="{{ toBeEditedDoggo.name }}">
+
+  <br>
+
+  <label>Breed</label>
+  <input type="text" name="breed" value="{{ toBeEditedDoggo.breed }}">
+
+  <br>
+
+  <label>Size</label>
+  {{!-- <input type="text" name="size" placeholder="Enter dog's size">   --}}
+  <select name="size" id="doggoSize">
+    <option value="{{ toBeEditedDoggo.size }}">{{ toBeEditedDoggo.size }}</option>
+    <option value="Small">Small</option>
+    <option value="Medium">Medium</option>
+    <option value="Large">Large</option>
+    <option value="More To Love">More To Love</option>
+  </select>
+
+  <br>
+
+  <label>Age</label>
+  <input type="text" name="age" value="{{ toBeEditedDoggo.age }}">
+
+  <br>
+
+  <label>Gender</label>
+  {{!-- <input type="text" name="gender" placeholder="Enter dog's gender"> --}}
+  <select name="gender" id="doggoGender">
+    <option value="{{ toBeEditedDoggo.gender }}">{{ toBeEditedDoggo.gender }}</option>
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="N/A">N/A</option>
+  </select>
+
+  <br>
+
+  <label>Description</label>
+  <br>
+  <input type="text" name="description" value="{{ toBeEditedDoggo.description }}">
+
+  <br>
+
+  <label>City</label>
+  <br>
+  <input type="text" name="city" value="{{ toBeEditedDoggo.city }}">
+
+  {{#if toBeEditedDoggo.foster}}
+  <input type="checkbox" name="foster" value="true" checked="true">Foster
+  {{else}}
+  <input type="checkbox" name="foster" value="true">Foster
+  {{/if}}
+
+  {{#if toBeEditedDoggo.walkies}}
+  <input type="checkbox" name="walkies" value="true" checked="true">Walkies
+  {{else}}
+  <input type="checkbox" name="walkies" value="true">Walkies
+  {{/if}}
+
+  <br>
+  <input type="hidden" name="myOwner" value={}>
+
+  <button type="submit">Edit dog</button>
+
+</form>
+
+{{#if errorMessage}}
+{{errorMessage}}
+{{/if}}
