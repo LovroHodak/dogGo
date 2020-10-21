@@ -5,8 +5,43 @@
 <hr>
 
 <div class="secondary-nav">
-<a href="/logout" class="btn btn-primary" >Logout</a>  
-<a href="/volunteer/search" class="btn btn-primary" >Find a dog</a>
+  <a href="/volunteer/{{volunteerId}}/edit-volunteer" class="btn btn-primary">Edit my Profile</a>
+  <a href="/logout" class="btn btn-primary">Logout</a>
+  <a href="/volunteer/search" class="btn btn-primary">Find a dog</a>
 </div>
 
+<h1>Dogs I've messaged:</h1>
+{{#if updatedVolunteerDogs}}
+<div class="dashboard">
+  {{#each updatedVolunteerDogs.myDoggos}}
+  <div class="card" style="width: 18rem;">
+    <div class="card-img-top">
+      <img class="image" src="{{this.imageUrl}}" alt="Card image cap">
+    </div>
 
+    <div class="card-body">
+      <h2 class="card-title">
+        {{this.name}}
+
+      </h2>
+      <h5>
+        {{this.breed}}
+      </h5>
+      <p class="card-text">
+        {{#if this.walkies}}
+      <p>Available for walkies!</p>
+      {{/if}}
+      {{#if this.foster}}
+      <p>Available for fostering!</p>
+      {{/if}}
+      <a href="/volunteer/{{this._id}}/profile" class="badge badge-pill badge-primary">More info</a>
+      </p>
+    </div>
+  </div>
+  {{/each}}
+</div>
+
+{{else}}
+
+<h1>You haven't messaged any dogs yet :(</h1>
+{{/if}}

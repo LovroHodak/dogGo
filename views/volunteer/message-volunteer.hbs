@@ -2,11 +2,13 @@
 
 {{#each convo.body}}
 <h5>
-    {{this}}
+  {{this}}
 </h5>
 {{/each}}
 
-<form method="POST" action="/volunteer/{{convo._id}}" >
+<form method="POST" action="/volunteer/{{convo._id}}">
   <textarea name="body"></textarea>
-  <input type="submit" class="btn btn-primary"s>
+  <input type="submit" class="btn btn-primary" s>
 </form>
+
+<a href="/volunteer">Dashboard</a>

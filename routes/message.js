@@ -10,9 +10,6 @@ router.get('/volunteer/:doggoId/messages', (req, res) => {
   let id = req.params.doggoId
   let volunteerId = req.session.loggedInUser._id
 
-  console.log(id)
-  console.log(volunteerId)
-
 messageModel.findOne({doggo: id, volunteer: volunteerId}) 
     .then((message) =>{
         if (message) {
@@ -48,11 +45,34 @@ router.post('/volunteer/:messageId', (req, res) => {
   let messId = req.params.messageId
   let body = req.session.loggedInUser.name + " said: " + req.body.body//we named the key body, soz
 
+  let hoomanData = req.session.loggedInUser
+  console.log('hoomandata is', hoomanData)
+
   messageModel.findByIdAndUpdate(messId, {$push: {body}})
-    .then(() => {
-      res.redirect(`/volunteer/${messId}`)
+    .then((message) => {
+      console.log('message return is', message)
+      hoomanModel.findByIdAndUpdate(hoomanData._id, {$push: {myDoggos: message.doggo}})
+          .then(() => {
+            res.redirect(`/volunteer/${messId}`)
+          })
     })
 })
+
+
+//reference
+//rendering the add-a-dog form
+router.post('/owner/add-a-dog', (req, res) => {
+  const {name, breed, size, age, gender, description, city, foster, walkies, imageUrl} = req.body
+
+  let hoomanData = req.session.loggedInUser
+
+  doggoModel.create( { name, breed, size, age, gender, description, city, foster, walkies, imageUrl, myOwner : hoomanData._id } )
+      .then((doggoData) =>{
+        hoomanModel.findByIdAndUpdate( hoomanData._id  , { $push: { myDoggos: doggoData._id } } )
+        res.redirect('/owner')
+      })
+})
+//
 
 
 

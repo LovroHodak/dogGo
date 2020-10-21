@@ -1,0 +1,18 @@
+<h1>Edit your profile</h1>
+<p class="copy"> Wanna change something?
+</p>
+
+<form method="POST" action="/volunteer/{{volunteer._id}}/edit-volunteer">
+  <label>Name</label>
+  <input type="text" name="name" value="{{ volunteer.name }}">
+
+  <br>
+
+  <label>City</label>
+  <input type="text" name="city" value="{{ volunteer.city }}">
+
+  <br>
+
+  <button type="submit">Edit</button>
+
+</form>
