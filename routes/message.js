@@ -23,11 +23,6 @@ messageModel.findOne({doggo: id, volunteer: volunteerId})
           })
         }
     })
-//if statement if messageid already exists
-//redirect to next one
-
-
-
 })
 
 router.get('/volunteer/:messId', (req, res) => {
