@@ -4,15 +4,11 @@ const router  = express.Router();
 const hoomanModel = require('../models/hooman.model')
 const doggoModel = require('../models/doggo.model')
 
-var bcrypt = require('bcryptjs');
-
 router.get('/volunteer', (req, res) => {
   res.render('./volunteer/volunteer-dashboard')
 })
 
 router.get('/volunteer/search', (req, res) => {
-  let volunteerCity = req.session.loggedInUser.city
-
   doggoModel.find()
     .then((allDoggos) => {
       if (allDoggos.length > 0) {
@@ -62,6 +58,5 @@ if (searchedCity && fosterValue === "true" && walkiesValue == undefined) {
       })
   }
       })
-      //FINISH THE CITY SEARCH OPTIONS
 
 module.exports = router;
