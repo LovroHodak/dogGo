@@ -16,3 +16,26 @@
   <button type="submit">Edit</button>
 
 </form>
+
+<form method="POST" action="/volunteer/edit-volunteer-verify-password">
+  <label>Old password</label>
+  <input type="password" name="submittedPassword">
+  <button type="submit">Verify</button>
+</form>
+
+{{#if passwordMessage}}
+
+{{passwordMessage}}
+<form method="POST" action="/volunteer/edit-volunteer-password">
+  <label>New password</label>
+  <input type="password" name="newPassword">
+  <button type="submit">Change password</button>
+</form>
+
+{{else}}
+{{errorMessage}}
+{{/if}}
+
+{{#if successMessage}}
+{{successMessage}}
+{{/if}}

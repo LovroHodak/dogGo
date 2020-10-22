@@ -56,7 +56,18 @@ router.post('/volunteer/:messageId', (req, res) => {
     })
 })
 
-//from owner's side - see a dog's inbox
+//from owner's side - see a dog's convo inbox
+router.get('/owner/:doggoId/messages', (req, res) => {
+let id = req.params.doggoId
+
+  messageModel.find({doggo:id})
+    .populate('volunteer')
+    .then((messageArr) => {
+      res.render('./owner/messages',{messageArr})
+    })
+})
+
+//from owner's side - see a dog's inbox (GET)
 router.get('/owner/:messageId', (req, res) => {
   let id = req.params.messageId
  
@@ -72,7 +83,7 @@ router.get('/owner/:messageId', (req, res) => {
   })
 })
 
-//from owner's side - see a dog's convo with specific person
+//from owner's side - see a dog's inbox (POST)
 router.post('/owner/:doggoId/:messageId', (req,res) => {
    let id = req.params.messageId
    let doggoId = req.params.doggoId
@@ -84,6 +95,17 @@ router.post('/owner/:doggoId/:messageId', (req,res) => {
         .then(() => {
         res.redirect(`/owner/${id}`)
         })
+    })
+})
+
+//archive a dog's convo with a volunteer
+router.get('/owner/:doggoId/:messId/delete', (req, res) => {
+  let doggoId = req.params.doggoId
+  let messageId = req.params.messId
+
+  messageModel.findByIdAndDelete(messageId)
+    .then(() => {
+      res.redirect(`/owner/${doggoId}/messages`)
     })
 })
 

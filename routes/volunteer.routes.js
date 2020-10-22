@@ -1,6 +1,8 @@
 const express = require('express');
 const router  = express.Router();
 
+var bcrypt = require('bcryptjs');
+
 const hoomanModel = require('../models/hooman.model')
 const doggoModel = require('../models/doggo.model')
 const messageModel = require('../models/message.model')
@@ -85,7 +87,7 @@ router.get('/volunteer/search/filter', (req, res) => {
   }
 })
 
-//editing the owner form
+//editing the volunteer form
 router.get('/volunteer/:volunteerId/edit-volunteer', (req, res) => {
   let id = req.params.volunteerId
 
@@ -109,6 +111,54 @@ router.post('/volunteer/:volunteerId/edit-volunteer', (req, res) => {
     .catch(() => {
       res.render('error')
     })
+})
+
+//archive dog card
+router.get('/volunteer/:doggoId/delete', (req, res) => {
+  let volunteerId = req.session.loggedInUser._id
+  let dogId = req.params.doggoId
+
+  messageModel.findOneAndDelete({doggo: dogId, volunteer: volunteerId})
+    .then(() => {
+      res.redirect('/volunteer')
+    })
+})
+
+//editing volunteer password
+router.post('/volunteer/edit-volunteer-verify-password', (req, res) => {
+  const {submittedPassword} = req.body
+  const volunteerEmail = req.session.loggedInUser.email
+  console.log(submittedPassword)
+  console.log(volunteerEmail)
+
+  hoomanModel.findOne({email: volunteerEmail})
+    .then((hoomanData) => {
+      bcrypt.compare(submittedPassword, hoomanData.password)
+        .then((result) => {
+          if (result) {
+            res.render('./volunteer/edit-volunteer', {passwordMessage: 'Password matches!'})
+          }
+          else {
+            res.status(500).render('./volunteer/edit-volunteer', {errorMessage: 'Password not matching'})
+          }
+        })
+    })
+})
+
+router.post('/volunteer/edit-volunteer-password', (req, res) => {
+    const {newPassword} = req.body
+    const volunteerEmail = req.session.loggedInUser.email
+
+    bcrypt.genSalt(10)
+    .then((salt) => {
+      bcrypt.hash(newPassword, salt)
+        .then((hashedPassword) => {
+          hoomanModel.findOneAndUpdate({email: volunteerEmail}, {$set: {password: hashedPassword}})
+            .then(() => {
+              res.render('./volunteer/edit-volunteer', {successMessage: 'Password successfully updated'})
+            })
+        })
+    })  
 })
 
 module.exports = router;
