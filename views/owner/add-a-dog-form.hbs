@@ -8,13 +8,14 @@
 
 
 {{#if imagePath}}
-<img src="{{imagePath}}" alt="">
-
+<div class="load-image">
+<img class="image" src="{{imagePath}}" alt="Doggo image">
+</div>
 {{else}}
 
 <form method="POST" action="/upload" enctype="multipart/form-data">
       <input type="file" name="imageUrl" >
-      <button type="submit" class="btn btn-secondary">add an image</button> 
+      <button type="submit" class="btn btn-secondary" id="transparent-btn" >add an image</button> 
 </form> 
 
 {{/if}}
@@ -96,6 +97,10 @@
 
 </form>
 
+
 {{#if errorMessage}}
+<br>
+<div class="alert alert-danger" role="alert"> 
 {{errorMessage}}
+</div>
 {{/if}}

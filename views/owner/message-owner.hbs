@@ -1,13 +1,20 @@
-<h1>message from {{message.volunteer.name}}</h1>
-
+<a href="/owner/{{message.doggo._id}}/messages" class="btn btn-secondary" id="transparent-btn">Back to inbox</a>
+<hr>
+<h1>Message from {{message.volunteer.name}}</h1>
+<hr>
+<div class="messanger">
 {{#each message.body}}
+<div class="box2 sb2">
 <h5>
     {{this}}
 </h5>
+</div>
 {{/each}}
 
 
-<form method="POST" action="/owner/{{message.doggo._id}}/{{message._id}}">
-  <textarea name="body"></textarea>
-  <input type="submit" class="btn btn-primary" >
-</form>
+      <form method="POST" action="/owner/{{message.doggo._id}}/{{message._id}}">
+        <textarea class="messanger-body" name="body"></textarea>
+        <input type="submit" class="btn btn-primary" >
+      </form>
+
+</div>

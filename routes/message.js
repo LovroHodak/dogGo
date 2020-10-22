@@ -5,7 +5,7 @@ const hoomanModel = require('../models/hooman.model')
 const doggoModel = require('../models/doggo.model')
 const messageModel = require('../models/message.model')
 
-
+//from volunteer's side - either creates a new message or comes back to an old one
 router.get('/volunteer/:doggoId/messages', (req, res) => {
   let id = req.params.doggoId
   let volunteerId = req.session.loggedInUser._id
@@ -25,6 +25,7 @@ messageModel.findOne({doggo: id, volunteer: volunteerId})
     })
 })
 
+//brings up already created conv from volunteer's side
 router.get('/volunteer/:messId', (req, res) => {
   let id = req.params.messId
 
@@ -64,8 +65,6 @@ router.post('/owner/add-a-dog', (req, res) => {
         res.redirect('/owner')
       })
 })
-//
-
 
 
 router.get('/owner/:messageId', (req, res) => {
