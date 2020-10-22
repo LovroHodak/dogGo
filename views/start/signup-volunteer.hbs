@@ -6,7 +6,7 @@
 <hr>
 
 
-<form method="POST" action="/signup" class="form-group" >
+<form method="POST" action="/signup" class="form-group">
   <input type="hidden" name="hoomanType" value="volunteer">
 
   <br>
@@ -17,7 +17,21 @@
   <br>
 
   <label class="copy">City</label>
-  <input type="text" name="city" placeholder="Enter your city" class="form-control">
+  <select name="city" class="form-control">
+    <option value="Amsterdam">Amsterdam</option>
+    <option value="Berlin">Berlin</option>
+    <option value="Bratislava">Bratislava</option>
+    <option value="Dublin">Dublin</option>
+    <option value="Hamburg">Hamburg</option>
+    <option value="Lisbon">Lisbon</option>
+    <option value="London">London</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Paris">Paris</option>
+    <option value="Prague">Prague</option>
+    <option value="Rome">Rome</option>
+    <option value="Stockholm">Stockholm</option>
+    <option value="Vilnius">Vilnius</option>
+  </select>
 
   <br>
 
@@ -32,7 +46,7 @@
 
   <br>
 
-  <button type="submit" class="btn btn-primary" >Sign Up</button>
+  <button type="submit" class="btn btn-primary">Sign Up</button>
 
 </form>
 
@@ -40,8 +54,6 @@
 {{#if errorMessage}}
 <br>
 <div class="alert alert-danger" role="alert">
-{{errorMessage}}
+  {{errorMessage}}
 </div>
 {{/if}}
-
-

@@ -63,9 +63,23 @@
 
   <br>
 
-  <label>City</label>
-  <br>
-  <input type="text" name="city" value="{{ toBeEditedDoggo.city }}">
+  <label class="copy">City</label>
+  <select name="city">
+    <option value="{{ toBeEditedDoggo.city }}">{{ toBeEditedDoggo.city }}</option>
+    <option value="Amsterdam">Amsterdam</option>
+    <option value="Berlin">Berlin</option>
+    <option value="Bratislava">Bratislava</option>
+    <option value="Dublin">Dublin</option>
+    <option value="Hamburg">Hamburg</option>
+    <option value="Lisbon">Lisbon</option>
+    <option value="London">London</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Paris">Paris</option>
+    <option value="Prague">Prague</option>
+    <option value="Rome">Rome</option>
+    <option value="Stockholm">Stockholm</option>
+    <option value="Vilnius">Vilnius</option>
+  </select>
 
   {{#if toBeEditedDoggo.foster}}
   <input type="checkbox" name="foster" value="true" checked="true">Foster
@@ -90,7 +104,7 @@
 
 {{#if errorMessage}}
 <br>
-<div class="alert alert-danger" role="alert"> 
-{{errorMessage}}
+<div class="alert alert-danger" role="alert">
+  {{errorMessage}}
 
-{{/if}}
+  {{/if}}
