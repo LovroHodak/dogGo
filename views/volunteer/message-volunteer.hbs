@@ -1,3 +1,5 @@
+<a href="/logout" class="btn btn-secondary" id="transparent-btn">Logout</a>
+<a href="/volunteer" class="btn btn-secondary" id="transparent-btn">Back to the dashboard</a>
 <a href="/volunteer/{{convo.doggo._id}}/profile" class="btn btn-secondary" id="transparent-btn">Back to dog profile</a>
 <hr>
 <h1>Message {{convo.doggo.name}}</h1>
@@ -11,7 +13,6 @@
 </div>
 {{/each}}
 
-<<<<<<< HEAD
 
       <form method="POST" action="/volunteer/{{convo._id}}" >
         <textarea class="messanger-body"  name="body"></textarea>
@@ -19,11 +20,3 @@
       </form>
 
 </div>
-=======
-<form method="POST" action="/volunteer/{{convo._id}}">
-  <textarea name="body"></textarea>
-  <input type="submit" class="btn btn-primary" s>
-</form>
-
-<a href="/volunteer">Dashboard</a>
->>>>>>> origin/Aleks
