@@ -23,11 +23,6 @@ messageModel.findOne({doggo: id, volunteer: volunteerId})
           })
         }
     })
-//if statement if messageid already exists
-//redirect to next one
-
-
-
 })
 
 router.get('/volunteer/:messId', (req, res) => {
@@ -36,7 +31,6 @@ router.get('/volunteer/:messId', (req, res) => {
   messageModel.findById(id)
     .populate('doggo')
     .then((convo) => {
-      console.log(convo)
       res.render('./volunteer/message-volunteer', {convo})
     })
 })
@@ -46,11 +40,9 @@ router.post('/volunteer/:messageId', (req, res) => {
   let body = req.session.loggedInUser.name + " said: " + req.body.body//we named the key body, soz
 
   let hoomanData = req.session.loggedInUser
-  console.log('hoomandata is', hoomanData)
 
   messageModel.findByIdAndUpdate(messId, {$push: {body}})
     .then((message) => {
-      console.log('message return is', message)
       hoomanModel.findByIdAndUpdate(hoomanData._id, {$push: {myDoggos: message.doggo}})
           .then(() => {
             res.redirect(`/volunteer/${messId}`)
@@ -83,7 +75,11 @@ router.get('/owner/:messageId', (req, res) => {
   .populate('doggo')
   .populate('volunteer')
   .then((message) => {
-    res.render(`./owner/message-owner`, {message} )
+     if (req.session.loggedInUser._id == message.doggo.myOwner) {
+        res.render(`./owner/message-owner`, {message} )
+     } else {
+       res.redirect('/login')
+     }
   })
 })
 

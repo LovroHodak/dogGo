@@ -15,10 +15,8 @@ router.get('/owner', (req, res) => {
 doggoModel.find({myOwner: req.session.loggedInUser._id})
   .populate('myOwner')
   .then((doggoArr) => {
-    console.log('doggoArr is', doggoArr)
     res.render('./owner/owner-dashboard', {doggoArr})
-  })
-  
+  }) 
 })
 
 
@@ -27,8 +25,6 @@ router.get('/owner/add-a-dog', (req, res) => {
   res.render('./owner/add-a-dog-form')
 })
 
-
-//rendering the add-a-dog form
 router.post('/owner/add-a-dog', (req, res) => {
   const {name, breed, size, age, gender, description, city, foster, walkies, imageUrl} = req.body
 
@@ -60,15 +56,12 @@ router.post('/owner/:doggoId/edit-a-dog', (req, res) => {
   const {name, breed, size, age, gender, description, foster, walkies, imageUrl} = req.body
   let hoomanData = req.session.loggedInUser
 
-  console.log(imageUrl)
-
   doggoModel.findByIdAndUpdate(id, {$set: {name, breed, size, age, gender, description, foster, walkies, imageUrl, myOwner : hoomanData._id}})
     .then(() => {
       res.redirect('/owner')
     })
     .catch((err) => {
       res.render('error')
-      console.log('findbyidandupdate error', err)
     })
 })
 
@@ -87,11 +80,10 @@ router.get('/owner/:doggoId/delete', (req, res) => {
 router.get('/owner/:doggoId/messages', (req, res) => {
 let id = req.params.doggoId
 
-messageModel.find({doggo:id})
-  .populate('volunteer')
-  .then((messageArr) => {
-   console.log(messageArr)
-    res.render('./owner/messages',{messageArr})
+  messageModel.find({doggo:id})
+    .populate('volunteer')
+    .then((messageArr) => {
+      res.render('./owner/messages',{messageArr})
   })
 })
 
@@ -119,7 +111,6 @@ router.post('/owner/:ownerId/edit-owner', (req, res) => {
     })
     .catch((err) => {
       res.render('error')
-      console.log('findbyidandupdate error', err)
     })
 })
 

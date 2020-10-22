@@ -7,22 +7,14 @@ const messageModel = require('../models/message.model')
 
 router.get('/volunteer', (req, res) => {
   let volunteerId = req.session.loggedInUser._id
-  res.render('./volunteer/volunteer-dashboard', {volunteerId})
+  //res.render('./volunteer/volunteer-dashboard', {volunteerId})
 
-  // messageModel.find({volunteer: volunteerId})
-  //   .then((volunteerMessArr) => {
-  //     volunteerMessArr.forEach((message) => {
-  //       doggoModel.findById({_id: message.doggo})
-  //         .then((foundDog) => {
-  //             hoomanModel.findByIdAndUpdate(volunteerId, {$push: {myDoggos: foundDog}})
-  //               .then((updatedVolunteerDogs) => {
-  //                res.render('./volunteer/volunteer-dashboard', {updatedVolunteerDogs}) 
-  //               })
-              
-  //         })
-  //     })
-  //   })
-})
+  messageModel.find({volunteer: volunteerId})
+    .populate('doggo')
+    .then((volunteerMessArr) => {
+        res.render('./volunteer/volunteer-dashboard', {volunteerMessArr}) 
+      })
+    })
 
 //search available dogs landing page
 router.get('/volunteer/search', (req, res) => {
