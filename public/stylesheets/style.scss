@@ -4,6 +4,7 @@ body {
   // padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   background-color: #53d2dc;
+  padding-bottom: 10%;
 }
 
 
@@ -28,8 +29,10 @@ body {
 #landingImg2{
   width: 50%;
   position: relative;
+  // position: absolute;
   margin-left: 10%;
   margin-bottom: 50%;
+  // z-index: -1;
  }
 
 .form-group{
@@ -48,6 +51,11 @@ h1{
 
 .copy{
   color: white;
+}
+
+
+.form-control-edit {
+  max-width: 500px;
 }
 
 
@@ -320,4 +328,35 @@ html, body {
 h7 {
   color: white;
   font-size: 1rem;
+}
+
+// ----hide elements----////
+
+.hidden {
+ visibility: hidden;
+}
+
+
+// ----footer----////
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #ffde7d;
+  color: #26969e;
+  text-align: center;
+  padding-top: 5px;
+  height: 5%;
+}
+
+.footer-text {
+  padding-top: 5px;
+}
+
+.footer-link {
+  text-decoration: underline;
+  // color: #26969e;
+  color: #f6416c;
+  
 }

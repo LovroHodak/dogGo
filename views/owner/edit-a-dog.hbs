@@ -1,37 +1,47 @@
 <a href="/logout" class="btn btn-secondary" id="transparent-btn">Logout</a>
+<a href="/owner" class="btn btn-secondary" id="transparent-btn"> Back to dashboard</a>
 
 <hr>
 
-<h1>Edit your dog's profile</h1>
-
-<p class="copy"> Wanna change something?
+<h1>Edit you dog's profile </h1>
+<p class="copy"> Here you can edit information about your dog.
 </p>
 
+<hr class="hidden">
+<hr class="hidden">
+
+{{!-- /////----Image---/// --}}
 {{#if toBeEditedDoggo.imageUrl}}
-<img src="{{toBeEditedDoggo.imageUrl}}" alt="">
+<div class="load-image"></div>
+<img class="image" src="{{toBeEditedDoggo.imageUrl}}" alt="">
+</div>
 {{/if}}
 
 <form method="POST" action="/updateImg/{{toBeEditedDoggo._id}}" enctype="multipart/form-data">
   <input type="file" name="imageUrl">
 
-  <button type="submit" class="btn btn-secondary">update image</button>
+  <button type="submit" class="btn btn-secondary" id="transparent-btn">update image</button>
 </form>
 
-<form method="POST" action="/owner/{{toBeEditedDoggo._id}}/edit-a-dog">
+<hr class="hidden">
+
+{{!-- /////----Form---/// --}}
+
+<form method="POST" action="/owner/{{toBeEditedDoggo._id}}/edit-a-dog" class="form-group">
   <input type="hidden" name="imageUrl" value="{{toBeEditedDoggo.imageUrl}}">
 
-  <label>Name</label>
-  <input type="text" name="name" value="{{ toBeEditedDoggo.name }}">
+  <label class="copy">Name</label>
+  <input class="form-control" type="text" name="name" value="{{ toBeEditedDoggo.name }}">
 
   <br>
 
-  <label>Breed</label>
-  <input type="text" name="breed" value="{{ toBeEditedDoggo.breed }}">
+  <label class="copy">Breed</label>
+  <input class="form-control" type="text" name="breed" value="{{ toBeEditedDoggo.breed }}">
 
   <br>
 
-  <label>Size</label>
-  <select name="size" id="doggoSize">
+  <label class="copy">Size</label>
+  <select name="size" id="doggoSize" class="form-control">
     <option value="{{ toBeEditedDoggo.size }}">{{ toBeEditedDoggo.size }}</option>
     <option value="Small">Small</option>
     <option value="Medium">Medium</option>
@@ -41,14 +51,14 @@
 
   <br>
 
-  <label>Age</label>
-  <input type="text" name="age" value="{{ toBeEditedDoggo.age }}">
+  <label class="copy">Age</label>
+  <input class="form-control" type="text" name="age" value="{{ toBeEditedDoggo.age }}">
 
   <br>
 
-  <label>Gender</label>
+  <label class="copy">Gender</label>
   {{!-- <input type="text" name="gender" placeholder="Enter dog's gender"> --}}
-  <select name="gender" id="doggoGender">
+  <select name="gender" id="doggoGender" class="form-control">
     <option value="{{ toBeEditedDoggo.gender }}">{{ toBeEditedDoggo.gender }}</option>
     <option value="Male">Male</option>
     <option value="Female">Female</option>
@@ -57,14 +67,13 @@
 
   <br>
 
-  <label>Description</label>
+  <label class="copy">Description</label>
   <br>
-  <input type="text" name="description" value="{{ toBeEditedDoggo.description }}">
+  <input class="form-control" type="text" name="description" value="{{ toBeEditedDoggo.description }}">
 
   <br>
-
   <label class="copy">City</label>
-  <select name="city">
+  <select class="form-control" name="city">
     <option value="{{ toBeEditedDoggo.city }}">{{ toBeEditedDoggo.city }}</option>
     <option value="Amsterdam">Amsterdam</option>
     <option value="Berlin">Berlin</option>
@@ -81,22 +90,43 @@
     <option value="Vilnius">Vilnius</option>
   </select>
 
-  {{#if toBeEditedDoggo.foster}}
-  <input type="checkbox" name="foster" value="true" checked="true">Foster
-  {{else}}
-  <input type="checkbox" name="foster" value="true">Foster
-  {{/if}}
+  <div class="checkbox">
+    {{#if toBeEditedDoggo.foster}}
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="foster" value="true" checked="true" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        <p class="copy"> Foster </p>
+      </label>
+    </div>
+    {{else}}
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="foster" value="true" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        <p class="copy"> Foster </p>
+      </label>
+    </div>
+    {{/if}}
 
-  {{#if toBeEditedDoggo.walkies}}
-  <input type="checkbox" name="walkies" value="true" checked="true">Walkies
-  {{else}}
-  <input type="checkbox" name="walkies" value="true">Walkies
-  {{/if}}
-
+    {{#if toBeEditedDoggo.walkies}}
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="walkies" value="true" checked="true" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        <p class="copy"> Walkies </p>
+      </label>
+    </div>
+    {{else}}
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="walkies" value="true" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        <p class="copy"> Walkies </p>
+      </label>
+    </div>
+    {{/if}}
+  </div>
   <br>
   <input type="hidden" name="myOwner" value={}>
 
-  <button type="submit">Update dog</button>
+  <button class="btn btn-primary" type="submit">Update dog</button>
 
 </form>
 
