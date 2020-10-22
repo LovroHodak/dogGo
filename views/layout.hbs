@@ -12,25 +12,37 @@
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
 
-<body>
+<body >
 <nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand" href="/">
-    <img src="/images/4x/Asset 4@4x.png" width="30" height="30" alt="">
-    {{!-- <img src="/images/4x/Asset 5@4x.png"  height="20" alt=""> --}}
+      <div class="nav-elements">
+            <a class="navbar-brand" href="/">
+            <img src="/images/4x/Asset 4@4x.png" width="30" height="30" alt="">
+            </a>
+    {{!-- <a href="/logout" class="btn btn-secondary" id="transparent-btn-logout">Logout</a> --}}
+    <img src="/images/4x/Asset 5@4x.png"  height="20" alt="">
      {{!-- <button class="btn btn-sm btn-outline-secondary" type="button">Smaller button</button> --}}
 
-  </a>
-
+  
+      </div>
 
 </nav>
 
-<div class="container">
+<div class="container" class="cursor">
  {{{body}}}
-
 </div>
 
+{{!-- ----------footer --}}
+ {{!-- <div class="footer">
+   <div class="container">
+     <span class="text-muted">
+Hello
+     </span>
+   </div>
+ </div>
+ --}}
+‘
 
- 
+
 
   <script src="/javascripts/script.js"></script>
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"

@@ -96,35 +96,4 @@ messageModel.find({doggo:id})
 
 
 
-///editing the owner form
-// router.get('/owner/:ownerId/edit-owner', (req, res) => {
-//   let id = req.params.ownerId
-
-//   hoomanModel.findById(id)
-//     .then((owner) => {
-//       res.render('./owner/edit-owner', {owner})
-//     })
-//     .catch(() => {
-//       res.render('error')
-//     })
-// })
-
-
-// router.post('/owner/:ownerId/edit-owner', (req, res) => {
-//   let id = req.params.ownerId
-//   const {name, email, password} = req.body
-
-//   hoomanModel.findByIdAndUpdate(id, {$set: {name, email, password}})
-//     .then(() => {
-//       res.redirect('/owner')
-//     })
-//     .catch((err) => {
-//       res.render('error')
-//       console.log('findbyidandupdate error', err)
-//     })
-// })
-
-
-
-
 module.exports = router;

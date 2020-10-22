@@ -1,10 +1,17 @@
-<h1>Welcome to your messages' page</h1>
-<h1>
-{{#each messageArr}}
-<a href="/owner/{{this._id}}">{{this.volunteer.name}}</a>
-{{/each}}
+<a href="/owner" class="btn btn-secondary" id="transparent-btn">Back to dashboard</a>
+<hr>
 
-</h1>
+<h1>Welcome to your messages' page</h1>
+
+<h7>
+{{#each messageArr}}
+<hr>
+<img class="icon-messanger" src="/images/message.png" alt="message">
+You got a message from
+<a href="/owner/{{this._id}}"> {{this.volunteer.name}}</a>
+{{/each}}
+<hr>
+</h7>
 
 {{!-- <form method="post" action="contact.php">
   <textarea name="message"></textarea>
