@@ -15,30 +15,30 @@
 </div>
 
 <h1>Dogs I've messaged:</h1>
-{{#if updatedVolunteerDogs}}
+{{#if volunteerMessArr}}
 <div class="dashboard">
-  {{#each updatedVolunteerDogs.myDoggos}}
+  {{#each volunteerMessArr}}
   <div class="card" style="width: 18rem;">
     <div class="card-img-top">
-      <img class="image" src="{{this.imageUrl}}" alt="Card image cap">
+      <img class="image" src="{{this.doggo.imageUrl}}" alt="Card image cap">
     </div>
 
     <div class="card-body">
       <h2 class="card-title">
-        {{this.name}}
+        {{this.doggo.name}}
 
       </h2>
       <h5>
-        {{this.breed}}
+        {{this.doggo.breed}}
       </h5>
       <p class="card-text">
-        {{#if this.walkies}}
+        {{#if this.doggo.walkies}}
       <p>Available for walkies!</p>
       {{/if}}
-      {{#if this.foster}}
+      {{#if this.doggo.foster}}
       <p>Available for fostering!</p>
       {{/if}}
-      <a href="/volunteer/{{this._id}}/profile" class="badge badge-pill badge-primary">More info</a>
+      <a href="/volunteer/{{this.doggo._id}}/profile" class="badge badge-pill badge-primary">More info</a>
       </p>
     </div>
   </div>

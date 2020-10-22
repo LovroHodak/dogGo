@@ -21,10 +21,16 @@
 </form>
 
 
+{{#if errorMessage}}
+<br>
+<div class="alert alert-danger" role="alert"> 
+{{errorMessage}}
+</div>
+{{/if}}
+
+
 <div class="containerLanding">
 <img id="landingImg2"src="/images/undraw_nature_fun_n9lv.svg" alt="Dogwalk">
 </div>
 
-{{#if errorMessage}}
-{{errorMessage}}
-{{/if}}
+

@@ -10,17 +10,18 @@
 
 <div class="secondary-nav">
         <a href="/owner/{{doggoArr.0.myOwner._id}}/edit-owner" class="btn btn-primary">Edit my Profile</a>
-        <a href="/logout" class="btn btn-primary">Logout</a>
         <a href="/owner/add-a-dog" class="btn btn-primary">Add a dog</a>
 </div>
 
 <hr>
 
 <div class="dashboard">
+
+
 {{#each doggoArr}}
 <div class="card" style="width: 18rem;">
     <div class="card-img-top">
-        <img class= "image" src="{{this.imageUrl}}" alt="Card image cap">
+        <img class= "image" src="{{this.imageUrl}}"  onerror="this.src='/images/img_blank.jpg';" alt="Card image cap">
     </div>
     
     <div class="card-body">
@@ -31,6 +32,7 @@
      <h5>
          {{this.breed}}  
      </h5>
+     <hr>
             <p class="card-text">
                 {{#if this.walkies}}
                 <p>Available for walkies!</p>
@@ -38,11 +40,21 @@
                 {{#if this.foster}}
                 <p>Available for fostering!</p>
                 {{/if}}
-                <a href="/owner/{{this._id}}/edit-a-dog" class="badge badge-pill badge-secondary">Edit</a>
-                <a href="/owner/{{this._id}}/delete" class="badge badge-pill badge-secondary">Delete</a>
-                <a href="/owner/{{this._id}}/messages" class="badge badge-pill badge-primary">Message</a>    
+     <hr>
+                <div class="icons-profile">
+                <a  href="/owner/{{this._id}}/edit-a-dog" >
+                <img class="icon-card" src="/images/edit.svg" alt="edit">
+                </a>
+                <a href="/owner/{{this._id}}/delete" >
+                <img class="icon-card" src="/images/delete.svg" alt="delete">
+                </a>
+                <a  href="/owner/{{this._id}}/messages" >
+                <img class="icon-card" src="/images/message.svg" alt="message">
+                </a>   
+                </div> 
             </p>
     </div>
 </div>
 {{/each}}
-</div>
+
+

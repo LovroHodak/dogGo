@@ -1,4 +1,5 @@
 <a href="/logout" class="btn btn-secondary" id="transparent-btn">Logout</a>
+<a href="/volunteer" class="btn btn-secondary" id="transparent-btn">Back to the dashboard</a>
 
 <hr>
 
@@ -10,7 +11,7 @@
 
 
 
-{{!-- ------ --}}
+{{!-- Search nav --}}
 <div >
   <form action="/volunteer/search/filter" class="search" method="GET"  >
     <input class="search-field" type="search" placeholder="Enter a city" aria-label="Search" name="city">
@@ -57,36 +58,57 @@
 </div>
 
 
+
+{{!-- Dashboard --}}
+
+
 <div class="dashboard">
-  {{#each allDoggos}}
 
-  <div class="card" style="width: 18rem;">
-    <div class="card-body">
-      <h2 class="card-title">
-        {{this.name}}
 
-      </h2>
-
-      <h5>
-        {{this.breed}}
-      </h5>
-      <p class="card-text">
-        {{#if this.walkies}}
-      <p>Available for walkies!</p>
-      {{/if}}
-      <br>
-      {{#if this.foster}}
-      <p>Available for fostering!</p>
-      {{/if}}
-      </p>
-      <a href="/volunteer/{{this._id}}/profile" class="badge badge-pill badge-primary">More info</a>
+{{#each allDoggos}}
+<div class="card" style="width: 18rem;">
+    <div class="card-img-top">
+        <img class= "image" src="{{this.imageUrl}}"  onerror="this.src='/images/img_blank.jpg';" alt="Card image cap">
     </div>
-  </div>
+    
+    <div class="card-body">
+     <h2 class="card-title">
+         {{this.name}}
+   
+     </h2>
+     <h5>
+         {{this.breed}}  
+     </h5>
+     <hr>
+            <p class="card-text">
+                {{#if this.walkies}}
+                <p>Available for walkies!</p>
+                {{/if}}
+                {{#if this.foster}}
+                <p>Available for fostering!</p>
+                {{/if}}
+     <hr>
+                <div class="icons-profile">
+                <a href="/volunteer/{{this._id}}/profile" >
 
-  {{/each}}
-
+                  <p class="badge badge-pill badge-primary"> 
+                    More Info  
+                    {{!-- <img class="icon-card" src="/images/info.png" alt="info"> --}}
+                    </p>  
+ 
+                </a>   
+                </div> 
+            </p>
+    </div>
 </div>
+{{/each}}
+
+
+
 
 {{#if errorMessage}}
+<br>
+<div class="alert alert-danger" role="alert"> 
 {{errorMessage}}
+</div>
 {{/if}}

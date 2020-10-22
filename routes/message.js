@@ -5,7 +5,7 @@ const hoomanModel = require('../models/hooman.model')
 const doggoModel = require('../models/doggo.model')
 const messageModel = require('../models/message.model')
 
-
+//from volunteer's side - either creates a new message or comes back to an old one
 router.get('/volunteer/:doggoId/messages', (req, res) => {
   let id = req.params.doggoId
   let volunteerId = req.session.loggedInUser._id
@@ -25,13 +25,13 @@ messageModel.findOne({doggo: id, volunteer: volunteerId})
     })
 })
 
+//brings up already created conv from volunteer's side
 router.get('/volunteer/:messId', (req, res) => {
   let id = req.params.messId
 
   messageModel.findById(id)
     .populate('doggo')
     .then((convo) => {
-      console.log(convo)
       res.render('./volunteer/message-volunteer', {convo})
     })
 })
@@ -41,11 +41,9 @@ router.post('/volunteer/:messageId', (req, res) => {
   let body = req.session.loggedInUser.name + " said: " + req.body.body//we named the key body, soz
 
   let hoomanData = req.session.loggedInUser
-  console.log('hoomandata is', hoomanData)
 
   messageModel.findByIdAndUpdate(messId, {$push: {body}})
     .then((message) => {
-      console.log('message return is', message)
       hoomanModel.findByIdAndUpdate(hoomanData._id, {$push: {myDoggos: message.doggo}})
           .then(() => {
             res.redirect(`/volunteer/${messId}`)
@@ -67,8 +65,6 @@ router.post('/owner/add-a-dog', (req, res) => {
         res.redirect('/owner')
       })
 })
-//
-
 
 
 router.get('/owner/:messageId', (req, res) => {
@@ -78,7 +74,11 @@ router.get('/owner/:messageId', (req, res) => {
   .populate('doggo')
   .populate('volunteer')
   .then((message) => {
-    res.render(`./owner/message-owner`, {message} )
+     if (req.session.loggedInUser._id == message.doggo.myOwner) {
+        res.render(`./owner/message-owner`, {message} )
+     } else {
+       res.redirect('/login')
+     }
   })
 })
 
