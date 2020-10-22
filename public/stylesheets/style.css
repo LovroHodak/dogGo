@@ -11,15 +11,28 @@ body {
   flex-direction: row;
   justify-content: flex-end; }
 
+.text-block {
+  width: 80%; }
+
+.all-elements {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: baseline; }
+
+.element-wrap {
+  display: flex;
+  flex-wrap: wrap; }
+
 #landingImg {
-  width: 50%;
-  position: relative; }
+  width: 70%;
+  position: relative;
+  padding-left: 30%;
+  padding-bottom: 10%; }
 
 #landingImg2 {
-  width: 50%;
-  position: relative;
-  margin-left: 10%;
-  margin-bottom: 50%; }
+  width: 100%;
+  position: relative; }
 
 .form-group {
   width: 50%; }
@@ -34,8 +47,18 @@ h1 {
 .copy {
   color: white; }
 
-.form-control-edit {
-  max-width: 500px; }
+.copy2 {
+  color: white;
+  font-size: 1,5rem;
+  font-kerning: auto;
+  line-height: 1,5rem; }
+
+.copy3 {
+  color: white;
+  font-style: oblique; }
+
+.bold {
+  font-weight: bold; }
 
 hr {
   color: white;
@@ -252,5 +275,15 @@ h7 {
 .footer-link {
   text-decoration: underline;
   color: #f6416c; }
+
+.paw {
+  width: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px; }
+
+.paw-link {
+  color: #ffde7d;
+  font-weight: bold; }
 
 /*# sourceMappingURL=style.css.map */
