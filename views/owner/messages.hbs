@@ -1,21 +1,19 @@
 <a href="/logout" class="btn btn-secondary" id="transparent-btn">Logout</a>
-<a href="/owner" class="btn btn-secondary" id="transparent-btn">Back to dashboard</a>
+<a href="/owner" class="btn btn-secondary" id="transparent-btn"> Back to dashboard ◀ </a>
 
 <hr>
 
 <h1>Welcome to your messages' page</h1>
 
 <h7>
-{{#each messageArr}}
-<hr>
-<img class="icon-messanger" src="/images/message.png" alt="message">
-You got a message from
-<a href="/owner/{{this._id}}"> {{this.volunteer.name}}</a>
-{{/each}}
-<hr>
+  {{#each messageArr}}
+  <hr>
+  <a href="/owner/{{this.doggo._id}}/{{this._id}}/delete">
+    <img class="icon-card" src="/images/delete.svg" alt="delete">
+  </a>
+  <img class="icon-messanger" src="/images/message.png" alt="message">
+  You got a message from
+  <a href="/owner/{{this._id}}"> {{this.volunteer.name}}</a>
+  {{/each}}
+  <hr>
 </h7>
-
-{{!-- <form method="post" action="contact.php">
-  <textarea name="message"></textarea>
-  <input type="submit">
-</form> --}}

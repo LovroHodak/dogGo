@@ -73,18 +73,6 @@ router.get('/owner/:doggoId/delete', (req, res) => {
 })
 
 
-//accessing a dog's messages
-router.get('/owner/:doggoId/messages', (req, res) => {
-let id = req.params.doggoId
-
-  messageModel.find({doggo:id})
-    .populate('volunteer')
-    .then((messageArr) => {
-      res.render('./owner/messages',{messageArr})
-    })
-})
-
-
 //editing the owner form
 router.get('/owner/:ownerId/edit-owner', (req, res) => {
   let id = req.params.ownerId
