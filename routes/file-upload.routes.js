@@ -8,10 +8,8 @@ const doggoModel = require('../models/doggo.model')
 // include CLOUDINARY:
 const uploader = require('../config/cloudinary.config.js');
 
-
-
+//add dog image to profile
 router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {
-  console.log('file is: ', req.file)
  if (!req.file) {
    next(new Error('No file uploaded!'));
    return;
@@ -21,12 +19,13 @@ router.post('/upload', uploader.single('imageUrl'), (req, res, next) => {
   
 })
 
+//update dog image via edit dog form
 router.post('/updateImg/:doggoId', uploader.single('imageUrl'), (req, res, next) => {
-  console.log('file is: ', req.file)
  if (!req.file) {
    next(new Error('No file uploaded!'));
    return;
  }
+
 let imagePath = req.file.path 
 let id = req.params.doggoId
 
@@ -34,7 +33,6 @@ let id = req.params.doggoId
     .then(() => {
       res.redirect(`/owner/${id}/edit-a-dog`)
     })
-  
 })
 
 
