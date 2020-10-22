@@ -1,4 +1,5 @@
 <a href="/logout" class="btn btn-secondary" id="transparent-btn">Logout</a>
+<a href="/owner" class="btn btn-secondary" id="transparent-btn">Back to dashboard</a>
 
 <hr>
 
@@ -6,27 +7,28 @@
 <p class="copy"> Fill some information about your dog for volunteers to find it.
 </p>
 
+{{!-- /////----Image---/// --}}
 
 {{#if imagePath}}
 <div class="load-image">
-<img class="image" src="{{imagePath}}" alt="Doggo image">
+  <img class="image" src="{{imagePath}}" alt="Doggo image">
 </div>
 {{else}}
 
 <form method="POST" action="/upload" enctype="multipart/form-data">
-      <input type="file" name="imageUrl" >
-      <button type="submit" class="btn btn-secondary" id="transparent-btn" >add an image</button> 
-</form> 
+  <input type="file" name="imageUrl">
+  <button type="submit" class="btn btn-secondary" id="transparent-btn">add an image</button>
+</form>
 
 {{/if}}
 
 <form method="POST" action="/owner/add-a-dog" class="form-group">
-<input type="hidden" name="imageUrl" value="{{imagePath}}">
+  <input type="hidden" name="imageUrl" value="{{imagePath}}">
 
   <br>
 
 
-  <label class="copy" >Name</label>
+  <label class="copy">Name</label>
   <input type="text" name="name" placeholder="Enter dog's name" class="form-control">
 
   <br>
@@ -37,7 +39,6 @@
   <br>
 
   <label class="copy">Size</label>
-  {{!-- <input type="text" name="size" placeholder="Enter dog's size">   --}}
   <select name="size" id="doggoSize" class="form-control">
     <option value="Small">Small</option>
     <option value="Medium">Medium</option>
@@ -53,7 +54,6 @@
   <br>
 
   <label class="copy">Gender</label>
-  {{!-- <input type="text" name="gender" placeholder="Enter dog's gender"> --}}
   <select name="gender" id="doggoGender" class="form-control">
     <option value="Male">Male</option>
     <option value="Female">Female</option>
@@ -69,23 +69,38 @@
   <br>
 
   <label class="copy">City</label>
-  <br>
-  <input type="text" name="city" placeholder="Enter city dog is located in" class="form-control">
+  <select name="city" class="form-control">
+    <option value="Amsterdam">Amsterdam</option>
+    <option value="Berlin">Berlin</option>
+    <option value="Bratislava">Bratislava</option>
+    <option value="Dublin">Dublin</option>
+    <option value="Hamburg">Hamburg</option>
+    <option value="Lisbon">Lisbon</option>
+    <option value="London">London</option>
+    <option value="Madrid">Madrid</option>
+    <option value="Paris">Paris</option>
+    <option value="Prague">Prague</option>
+    <option value="Rome">Rome</option>
+    <option value="Stockholm">Stockholm</option>
+    <option value="Vilnius">Vilnius</option>
+  </select>
 
   <div class="checkbox">
-      {{!-- <input type="checkbox" name="foster" value="true" class="form-control">Foster --}}
-      {{!-- <input type="checkbox" name="walkies" value="true" class="form-control">Walkies --}}
 
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="foster" value="true" id="defaultCheck1">
-    <label class="form-check-label" for="defaultCheck1" > <p class="copy"> Foster </p> </label>
-    
-    
-  </div>
-  <div class="form-check">
-    <input class="form-check-input" type="checkbox" name="walkies" value="true" id="defaultCheck1">
-    <label class="form-check-label" for="defaultCheck1"> <p class="copy"> Walkies </p></label>
-  </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="foster" value="true" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        <p class="copy"> Foster </p>
+      </label>
+
+
+    </div>
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" name="walkies" value="true" id="defaultCheck1">
+      <label class="form-check-label" for="defaultCheck1">
+        <p class="copy"> Walkies </p>
+      </label>
+    </div>
 
   </div>
 
@@ -100,7 +115,7 @@
 
 {{#if errorMessage}}
 <br>
-<div class="alert alert-danger" role="alert"> 
-{{errorMessage}}
+<div class="alert alert-danger" role="alert">
+  {{errorMessage}}
 </div>
 {{/if}}

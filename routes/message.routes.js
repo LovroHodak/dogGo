@@ -10,14 +10,13 @@ router.get('/volunteer/:doggoId/messages', (req, res) => {
   let id = req.params.doggoId
   let volunteerId = req.session.loggedInUser._id
 
-messageModel.findOne({doggo: id, volunteer: volunteerId}) 
-    .then((message) =>{
+  messageModel.findOne({doggo: id, volunteer: volunteerId}) 
+    .then((message) => {
         if (message) {
           res.redirect(`/volunteer/${message._id}`)
         }
         else {
           messageModel.create({doggo: id, volunteer: volunteerId})
-        
           .then((newMess) => {
             res.redirect(`/volunteer/${newMess._id}`)
           })
@@ -25,14 +24,20 @@ messageModel.findOne({doggo: id, volunteer: volunteerId})
     })
 })
 
-//brings up already created conv from volunteer's side
+
+//from volunteer's side - brings up already created convo
 router.get('/volunteer/:messId', (req, res) => {
   let id = req.params.messId
 
   messageModel.findById(id)
+    .populate('volunteer') 
     .populate('doggo')
     .then((convo) => {
-      res.render('./volunteer/message-volunteer', {convo})
+      if (req.session.loggedInUser._id == convo.volunteer._id) {
+        res.render('./volunteer/message-volunteer', {convo})
+      } else {
+        res.redirect('/login')
+      }
     })
 })
 
@@ -51,22 +56,7 @@ router.post('/volunteer/:messageId', (req, res) => {
     })
 })
 
-
-//reference
-//rendering the add-a-dog form
-router.post('/owner/add-a-dog', (req, res) => {
-  const {name, breed, size, age, gender, description, city, foster, walkies, imageUrl} = req.body
-
-  let hoomanData = req.session.loggedInUser
-
-  doggoModel.create( { name, breed, size, age, gender, description, city, foster, walkies, imageUrl, myOwner : hoomanData._id } )
-      .then((doggoData) =>{
-        hoomanModel.findByIdAndUpdate( hoomanData._id  , { $push: { myDoggos: doggoData._id } } )
-        res.redirect('/owner')
-      })
-})
-
-
+//from owner's side - see a dog's inbox
 router.get('/owner/:messageId', (req, res) => {
   let id = req.params.messageId
  
@@ -82,20 +72,19 @@ router.get('/owner/:messageId', (req, res) => {
   })
 })
 
-
+//from owner's side - see a dog's convo with specific person
 router.post('/owner/:doggoId/:messageId', (req,res) => {
    let id = req.params.messageId
    let doggoId = req.params.doggoId
 
    doggoModel.findById(doggoId)
-    .then((doggo) =>{
-    let body = doggo.name + " said: " + req.body.body
-    messageModel.findByIdAndUpdate(id , { $push: {body} } )
+    .then((doggo) => {
+      let body = doggo.name + " said: " + req.body.body
+      messageModel.findByIdAndUpdate(id , {$push: {body}} )
         .then(() => {
         res.redirect(`/owner/${id}`)
         })
     })
-
-
 })
+
 module.exports = router;

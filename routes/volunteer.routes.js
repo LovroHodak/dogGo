@@ -7,14 +7,13 @@ const messageModel = require('../models/message.model')
 
 router.get('/volunteer', (req, res) => {
   let volunteerId = req.session.loggedInUser._id
-  //res.render('./volunteer/volunteer-dashboard', {volunteerId})
 
   messageModel.find({volunteer: volunteerId})
     .populate('doggo')
     .then((volunteerMessArr) => {
-        res.render('./volunteer/volunteer-dashboard', {volunteerMessArr}) 
-      })
+        res.render('./volunteer/volunteer-dashboard', {volunteerMessArr, volunteerId}) 
     })
+})
 
 //search available dogs landing page
 router.get('/volunteer/search', (req, res) => {
@@ -25,16 +24,18 @@ router.get('/volunteer/search', (req, res) => {
       } else {
         res.render('./volunteer/search', {errorMessage: 'No dogs in your area'})
       }
-      })
+    })
 })
 
 //see individual dog from volunteer's perspective
 router.get('/volunteer/:doggoId/profile', (req, res) => {
   let id = req.params.doggoId
 
+
   doggoModel.findById(id)
     .then((foundDoggo) => {
-      res.render('./volunteer/dog-profile', {foundDoggo})
+      let capitalizedCityOnDogProfile = foundDoggo.city.charAt(0).toUpperCase() + foundDoggo.city.slice(1)
+      res.render('./volunteer/dog-profile', {foundDoggo, capitalizedCityOnDogProfile})
     })
 })
 
@@ -44,27 +45,43 @@ router.get('/volunteer/search/filter', (req, res) => {
   let fosterValue = req.query.foster
   let walkiesValue = req.query.walkies
 
-if (searchedCity && fosterValue === "true" && walkiesValue == undefined) {
-  doggoModel.find({city: searchedCity, foster: true})
-    .then((allDoggos) => {
-      res.render('./volunteer/search', {allDoggos, foster: true})
-    })
-  } else if (searchedCity && fosterValue == undefined && walkiesValue === "true") {
+  if (searchedCity && fosterValue === "true" && walkiesValue == undefined) {
+    doggoModel.find({city: searchedCity, foster: true})
+      .then((allDoggos) => {
+        res.render('./volunteer/search', {allDoggos, searchedCity, foster: true})
+      })
+    } 
+  else if (searchedCity && fosterValue == undefined && walkiesValue === "true") {
     doggoModel.find({city: searchedCity, walkies: true})
       .then((allDoggos) => {
-      res.render('./volunteer/search', {allDoggos, walkies: true})
-    })
-  } else if (!searchedCity && !fosterValue && !walkiesValue) {
-      res.render('./volunteer/search', {errorMessage: 'Choose city and filters'})
-  } else {
+        res.render('./volunteer/search', {allDoggos, searchedCity, walkies: true})
+      })
+    } 
+  else if (searchedCity && fosterValue == "true" && walkiesValue === "true") {
+    doggoModel.find({city: searchedCity})
+      .then((allDoggos) => {
+        res.render('./volunteer/search', {allDoggos, searchedCity, foster: true, walkies: true})
+      })
+    } 
+  else if (searchedCity && fosterValue == undefined && walkiesValue === undefined) {
+    doggoModel.find({city: searchedCity})
+      .then((allDoggos) => {
+        res.render('./volunteer/search', {allDoggos, searchedCity})
+      })
+    } 
+  else if (!searchedCity && !fosterValue && !walkiesValue) {
+    res.render('./volunteer/search', {errorMessage: 'Choose city and filters'})
+    }
+  else {
     doggoModel.find()
       .then((allDoggos) => {
-      if (allDoggos.length > 0) {
-        res.render('./volunteer/search', {allDoggos, foster: true, walkies: true})
-      } else {
-        res.render('./volunteer/search', {errorMessage: 'No dogs in your area'})
-      }
-    })
+        if (allDoggos.length > 0) {
+          res.render('./volunteer/search', {allDoggos, searchedCity, foster: true, walkies: true})
+        }
+        else {
+          res.render('./volunteer/search', {errorMessage: 'No dogs in your area'})
+        }
+      })
   }
 })
 
@@ -89,9 +106,8 @@ router.post('/volunteer/:volunteerId/edit-volunteer', (req, res) => {
     .then(() => {
       res.redirect('/volunteer')
     })
-    .catch((err) => {
+    .catch(() => {
       res.render('error')
-      console.log('findbyidandupdate error', err)
     })
 })
 

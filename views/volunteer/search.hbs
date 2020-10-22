@@ -3,58 +3,55 @@
 
 <hr>
 
-
 <h1>Find available dogs</h1>
 
 <hr>
 
-
-
-
 {{!-- Search nav --}}
-<div >
-  <form action="/volunteer/search/filter" class="search" method="GET"  >
-    <input class="search-field" type="search" placeholder="Enter a city" aria-label="Search" name="city">
+<div>
+  <form action="/volunteer/search/filter" class="search" method="GET">
+    <div>
+      {{#if searchedCity}}
+      <input class="search-field" type="search" placeholder="Enter a city" aria-label="Search" name="city"
+        value={{searchedCity}}>
+      {{else}}
+      <input class="search-field" type="search" placeholder="Enter a city" aria-label="Search" name="city">
+      {{/if}}
+    </div>
 
+    <div class="checkbox">
+      {{#if foster}}
+      <input type="checkbox" name="foster" value="true" checked="true">
+      <label>
+        <p class="copy"> Foster </p>
+      </label>
+      {{else}}
+      <input type="checkbox" name="foster" value="true">
+      <label>
+        <p class="copy"> Foster </p>
+      </label>
+      {{/if}}
+    </div>
 
-          <div class="checkbox">
-       
-        
-            {{#if foster}}
-            <input type="checkbox" name="foster" value="true" checked="true">
-            <label>
-              <p class="copy" > Foster </p>
-            </label>
-            {{else}}
-            <input type="checkbox" name="foster" value="true">
-            <label>
-              <p class="copy"> Foster </p>
-            </label>
-            {{/if}}
-      </div>
+    <div class="checkbox">
+      {{#if walkies}}
+      <input type="checkbox" name="walkies" value="true" checked="true">
+      <label>
+        <p class="copy"> Walkies </p>
+      </label>
+      {{else}}
+      <input type="checkbox" name="walkies" value="true">
+      <label>
+        <p class="copy"> Walkies </p>
+      </label>
+      {{/if}}
+    </div>
 
-      <div class="checkbox" >
-            {{#if walkies}}
-            <input type="checkbox" name="walkies" value="true" checked="true">
-            <label>
-              <p class="copy"> Walkies </p>
-            </label>
-            {{else}}
-            <input type="checkbox" name="walkies" value="true">
-            <label>
-              <p class="copy"> Walkies </p>
-            </label>
-            {{/if}}
-      
-         
+    <div class="secondary-nav">
+      <button type="submit" class="btn btn-primary">Filter dogs</button>
+    </div>
 
-      </div>
-      <div class="secondary-nav">
-        <button type="submit" class="btn btn-primary" >Filter dogs</button>
-      </div>
-            
   </form>
-
 </div>
 
 
@@ -65,50 +62,49 @@
 <div class="dashboard">
 
 
-{{#each allDoggos}}
-<div class="card" style="width: 18rem;">
+  {{#each allDoggos}}
+  <div class="card" style="width: 18rem;">
     <div class="card-img-top">
-        <img class= "image" src="{{this.imageUrl}}"  onerror="this.src='/images/img_blank.jpg';" alt="Card image cap">
+      <img class="image" src="{{this.imageUrl}}" onerror="this.src='/images/img_blank.jpg';" alt="Card image cap">
     </div>
-    
+
     <div class="card-body">
-     <h2 class="card-title">
-         {{this.name}}
-   
-     </h2>
-     <h5>
-         {{this.breed}}  
-     </h5>
-     <hr>
-            <p class="card-text">
-                {{#if this.walkies}}
-                <p>Available for walkies!</p>
-                {{/if}}
-                {{#if this.foster}}
-                <p>Available for fostering!</p>
-                {{/if}}
-     <hr>
-                <div class="icons-profile">
-                <a href="/volunteer/{{this._id}}/profile" >
+      <h2 class="card-title">
+        {{this.name}}
 
-                  <p class="badge badge-pill badge-primary"> 
-                    More Info  
-                    {{!-- <img class="icon-card" src="/images/info.png" alt="info"> --}}
-                    </p>  
- 
-                </a>   
-                </div> 
-            </p>
+      </h2>
+      <h5>
+        {{this.breed}}
+      </h5>
+      <hr>
+      <p class="card-text">
+        {{#if this.walkies}}
+      <p>Available for walkies!</p>
+      {{/if}}
+      {{#if this.foster}}
+      <p>Available for fostering!</p>
+      {{/if}}
+      <hr>
+      <div class="icons-profile">
+        <a href="/volunteer/{{this._id}}/profile">
+
+          <p class="badge badge-pill badge-primary">
+            More Info
+          </p>
+
+        </a>
+      </div>
+      </p>
     </div>
-</div>
-{{/each}}
+  </div>
+  {{/each}}
 
 
 
 
-{{#if errorMessage}}
-<br>
-<div class="alert alert-danger" role="alert"> 
-{{errorMessage}}
-</div>
-{{/if}}
+  {{#if errorMessage}}
+  <br>
+  <div class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
+  {{/if}}

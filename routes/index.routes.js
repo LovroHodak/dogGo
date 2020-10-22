@@ -29,16 +29,16 @@ router.get('/signup/volunteer', (req, res) => {
 router.post('/signup', (req, res) => {
   const {email, password, name, hoomanType, city} = req.body
 
-if (!name || !email || !password || !hoomanType ) {
-  if (req.body.hoomanType == "volunteer") {
-  res.status(500).render('./start/signup-volunteer', {errorMessage: 'Please fill in all information'})
-  return;
-}
-  else {
-res.status(500).render('./start/signup-owner', {errorMessage: 'Please fill in all information'})
-  return;
+  if (!name || !email || !password || !hoomanType ) {
+    if (req.body.hoomanType == "volunteer") {
+    res.status(500).render('./start/signup-volunteer', {errorMessage: 'Please fill in all information'})
+    return;
+    }
+    else {
+    res.status(500).render('./start/signup-owner', {errorMessage: 'Please fill in all information'})
+    return;
+    }
   }
-}
 
 // let emailReg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
 //     if (!emailReg.test(email)) {
@@ -86,7 +86,6 @@ router.post('/login', (req, res) => {
 
   hoomanModel.findOne({email: email})
     .then((hoomanData) => {
-
       if (!hoomanData) {
         res.status(500).render('./start/login', {errorMessage: 'User does not exist'})
         return;
@@ -104,11 +103,11 @@ router.post('/login', (req, res) => {
           else {
             res.status(500).render('./start/login', {errorMessage: 'Password not matching'})
           }
-          })
-          .catch(() => {
-            res.status(500).render('./start/login', {errorMessage: 'Something went wrong with bcrypt compare. Try again!'})
-          })
-      })
+        })
+        .catch(() => {
+          res.status(500).render('./start/login', {errorMessage: 'Something went wrong with bcrypt compare. Try again!'})
+        })
+    })
 })
 
 

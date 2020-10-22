@@ -7,16 +7,13 @@ const hoomanModel = require('../models/hooman.model')
 const doggoModel = require('../models/doggo.model')
 const messageModel = require('../models/message.model')
 
-var bcrypt = require('bcryptjs');
-
-
 //rendering the dashboard
 router.get('/owner', (req, res) => {
-doggoModel.find({myOwner: req.session.loggedInUser._id})
-  .populate('myOwner')
-  .then((doggoArr) => {
-    res.render('./owner/owner-dashboard', {doggoArr})
-  }) 
+  doggoModel.find({myOwner: req.session.loggedInUser._id})
+    .populate('myOwner')
+    .then((doggoArr) => {
+      res.render('./owner/owner-dashboard', {doggoArr})
+    }) 
 })
 
 
@@ -32,7 +29,7 @@ router.post('/owner/add-a-dog', (req, res) => {
 
   doggoModel.create( { name, breed, size, age, gender, description, city, foster, walkies, imageUrl, myOwner : hoomanData._id } )
       .then((doggoData) =>{
-        hoomanModel.findByIdAndUpdate( hoomanData._id  , { $push: { myDoggos: doggoData._id } } )
+        hoomanModel.findByIdAndUpdate( hoomanData._id  , {$push: {myDoggos: doggoData._id}})
         res.redirect('/owner')
       })
 })
@@ -60,7 +57,7 @@ router.post('/owner/:doggoId/edit-a-dog', (req, res) => {
     .then(() => {
       res.redirect('/owner')
     })
-    .catch((err) => {
+    .catch(() => {
       res.render('error')
     })
 })
@@ -84,7 +81,7 @@ let id = req.params.doggoId
     .populate('volunteer')
     .then((messageArr) => {
       res.render('./owner/messages',{messageArr})
-  })
+    })
 })
 
 

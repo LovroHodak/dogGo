@@ -63,7 +63,7 @@ app.locals.title = 'dogGO';
 
 
 
-const index = require('./routes/index');
+const index = require('./routes/index.routes');
 app.use('/', index);
 
 const privateRoutes = (req, res, next) => {
@@ -77,13 +77,13 @@ const privateRoutes = (req, res, next) => {
 
 app.use(privateRoutes)
 
-const ownerRoutes = require('./routes/owner');
+const ownerRoutes = require('./routes/owner.routes');
 app.use('/', ownerRoutes);
 
-const volunteerRoutes = require('./routes/volunteer');
+const volunteerRoutes = require('./routes/volunteer.routes');
 app.use('/', volunteerRoutes);
 
-const messageRoutes = require('./routes/message');
+const messageRoutes = require('./routes/message.routes');
 app.use('/', messageRoutes);
 
 const imageRoutes = require('./routes/file-upload.routes');

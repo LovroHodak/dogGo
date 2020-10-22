@@ -6,21 +6,25 @@
 <p class="copy"> We are happy to see you again!
 </p>
 
-<hr>
+
 
 <div class="secondary-nav">
   <a href="/volunteer/{{volunteerId}}/edit-volunteer" class="btn btn-primary">Edit my Profile</a>
-  <a href="/logout" class="btn btn-primary">Logout</a>
   <a href="/volunteer/search" class="btn btn-primary">Find a dog</a>
 </div>
 
-<h1>Dogs I've messaged:</h1>
+<hr>
+
+<h7>Dogs I've messaged:</h7>
+
+<hr class="hidden">
+
 {{#if volunteerMessArr}}
 <div class="dashboard">
   {{#each volunteerMessArr}}
   <div class="card" style="width: 18rem;">
     <div class="card-img-top">
-      <img class="image" src="{{this.doggo.imageUrl}}" alt="Card image cap">
+      <img class="image" src="{{this.doggo.imageUrl}}" onerror="this.src='/images/img_blank.jpg';" alt="Card image cap">
     </div>
 
     <div class="card-body">
@@ -39,7 +43,15 @@
       <p>Available for fostering!</p>
       {{/if}}
       <a href="/volunteer/{{this.doggo._id}}/profile" class="badge badge-pill badge-primary">More info</a>
+      
       </p>
+      <hr>
+                 <a href="/volunteer/{{this.doggo._id}}/delete" >
+                <img class="icon-card" src="/images/delete.svg" alt="delete">
+                </a>
+                <a  href="/volunteer/{{this._id}}" >
+                <img class="icon-card" src="/images/message.svg" alt="message">
+                </a>  
     </div>
   </div>
   {{/each}}

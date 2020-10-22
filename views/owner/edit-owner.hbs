@@ -1,23 +1,42 @@
+<a href="/logout" class="btn btn-secondary" id="transparent-btn">Logout</a>
+<a href="/owner" class="btn btn-secondary" id="transparent-btn"> Back to dashboard</a>
+
+<hr>
 <h1>Edit your profile</h1>
 <p class="copy"> Wanna change something?
+
+<hr>
+<hr class="hidden">
+
 </p>
 
-<form method="POST" action="/owner/{{owner._id}}/edit-owner">
-  <input type="radio" name="hoomanType" value="private" checked="checked">Individual
-  <input type="radio" name="hoomanType" value="org">Organisation
+<div >
+<form method="POST" action="/owner/{{owner._id}}/edit-owner" class="form-group">
+  
+  <div class="secondary-nav">
+      <div class="radio">
+  <input type="radio" name="hoomanType" value="private" checked="checked"><p class="copy" class="radio">Individual</p>
+      </div>
+
+      <div class="radio"></div>
+  <input type="radio" name="hoomanType" value="org"><p class="copy" class="radio">Organisation</p>
+      </div>
+ </div>
+  
+  <div class="form-control-edit">
+
+  <label class="copy">Name</label>
+  <input type="text" name="name" value="{{ owner.name }}" class="form-control">
 
   <br>
 
-  <label>Name</label>
-  <input type="text" name="name" value="{{ owner.name }}">
+  <label class="copy">City</label>
+  <input type="text" name="city" value="{{ owner.city }}" class="form-control">
 
   <br>
 
-  <label>City</label>
-  <input type="text" name="city" value="{{ owner.city }}">
+  <button type="submit" class="btn btn-primary">Edit</button>
 
-  <br>
-
-  <button type="submit">Edit</button>
-
+</div>
 </form>
+</div>
