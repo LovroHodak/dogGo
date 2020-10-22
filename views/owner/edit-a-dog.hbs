@@ -2,11 +2,23 @@
 
 <hr>
 
-<h1>Edit you dog profile</h1>
+<h1>Edit your dog's profile</h1>
+
 <p class="copy"> Wanna change something?
 </p>
 
+{{#if toBeEditedDoggo.imageUrl}}
+<img src="{{toBeEditedDoggo.imageUrl}}" alt="">
+{{/if}}
+
+<form method="POST" action="/updateImg/{{toBeEditedDoggo._id}}" enctype="multipart/form-data">
+  <input type="file" name="imageUrl">
+
+  <button type="submit" class="btn btn-secondary">update image</button>
+</form>
+
 <form method="POST" action="/owner/{{toBeEditedDoggo._id}}/edit-a-dog">
+  <input type="hidden" name="imageUrl" value="{{toBeEditedDoggo.imageUrl}}">
 
   <label>Name</label>
   <input type="text" name="name" value="{{ toBeEditedDoggo.name }}">
@@ -19,7 +31,6 @@
   <br>
 
   <label>Size</label>
-  {{!-- <input type="text" name="size" placeholder="Enter dog's size">   --}}
   <select name="size" id="doggoSize">
     <option value="{{ toBeEditedDoggo.size }}">{{ toBeEditedDoggo.size }}</option>
     <option value="Small">Small</option>
@@ -71,7 +82,7 @@
   <br>
   <input type="hidden" name="myOwner" value={}>
 
-  <button type="submit">Edit dog</button>
+  <button type="submit">Update dog</button>
 
 </form>
 

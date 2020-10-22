@@ -6,11 +6,12 @@
 {{#each convo.body}}
 <div class="box1 sb1">
 <h5>
-    {{this}}
+  {{this}}
 </h5>
 </div>
 {{/each}}
 
+<<<<<<< HEAD
 
       <form method="POST" action="/volunteer/{{convo._id}}" >
         <textarea class="messanger-body"  name="body"></textarea>
@@ -18,3 +19,11 @@
       </form>
 
 </div>
+=======
+<form method="POST" action="/volunteer/{{convo._id}}">
+  <textarea name="body"></textarea>
+  <input type="submit" class="btn btn-primary" s>
+</form>
+
+<a href="/volunteer">Dashboard</a>
+>>>>>>> origin/Aleks
