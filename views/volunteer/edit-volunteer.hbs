@@ -51,21 +51,34 @@
 
   <br>
 
+
   {{#if passwordMessage}}
 
-  {{passwordMessage}}
+  <div class="alert alert-success" role="alert">
+    {{passwordMessage}}
+  </div>
+
   <form method="POST" action="/volunteer/edit-volunteer-password">
-    <label>New password</label>
+    <label class="copy">New password</label>
     <input type="password" name="newPassword" class="form-control">
     <button type="submit" class="btn btn-primary">Change password</button>
   </form>
 
   {{else}}
-  {{errorMessage}}
+  {{#if errorMessage}}
+  <br>
+  <div class="alert alert-danger" role="alert">
+    {{errorMessage}}
+  </div>
   {{/if}}
 
+  {{/if}}
+
+
   {{#if successMessage}}
-  {{successMessage}}
+  <div class="alert alert-success" role="alert">
+    {{successMessage}}
+  </div>
   {{/if}}
 </div>
 </form>

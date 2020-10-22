@@ -174,10 +174,10 @@ The url to your repository and to your deployed project
 
 [Repository Link](https://github.com/scmendez/dogGo)
 
-[Deploy Link](http://heroku.com)
+[Deploy Link](https://d-o-g-g-o.herokuapp.com/)
 
 ### Slides
 
 The url to your presentation slides
 
-[Slides Link](http://slides.com)
+[Slides Link](https://slides.com/alekstana/deck-172fb6/)

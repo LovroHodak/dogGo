@@ -13,6 +13,7 @@ router.get('/volunteer', (req, res) => {
   messageModel.find({volunteer: volunteerId})
     .populate('doggo')
     .then((volunteerMessArr) => {
+      console.log(volunteerMessArr)
         res.render('./volunteer/volunteer-dashboard', {volunteerMessArr, volunteerId}) 
     })
 })
