@@ -88,9 +88,9 @@ router.get('/owner/:ownerId/edit-owner', (req, res) => {
 
 router.post('/owner/:ownerId/edit-owner', (req, res) => {
   let id = req.params.ownerId
-  const {name, city, hoomanType} = req.body
+  const {name, hoomanType} = req.body
 
-  HoomanModel.findByIdAndUpdate(id, {$set: {name, city, hoomanType}})
+  HoomanModel.findByIdAndUpdate(id, {$set: {name, hoomanType}})
     .then(() => {
       res.redirect('/owner')
     })

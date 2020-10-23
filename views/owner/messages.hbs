@@ -3,8 +3,9 @@
 
 <hr>
 
-<h1>Welcome to your messages' page</h1>
+<h1>Welcome to your messages page</h1>
 
+{{#if messageArr}}
 <h7>
   {{#each messageArr}}
   <hr>
@@ -13,11 +14,16 @@
   </a>
   {{!-- <img class="icon-messanger" src="/images/message_w.svg" alt="message"> --}}
 
-  <a class="inbox" href="/owner/{{this._id}}">  
+  <a class="inbox" href="/owner/{{this._id}}">
     <img class="icon-messanger" src="/images/message_w.svg" alt="message">
 
-  You got a message from {{this.volunteer.name}}
+    You got a message from {{this.volunteer.name}}
   </a>
   {{/each}}
   <hr>
 </h7>
+{{else}}
+<h7>
+  No messages yet, but don't worry! It's only a matter of time 😄
+</h7>
+{{/if}}

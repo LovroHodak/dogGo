@@ -10,36 +10,44 @@
 
 </p>
 
+<div>
+  <form method="POST" action="/volunteer/{{ volunteer._id }}/edit-volunteer" class="form-group">
+
+    <label class="copy">Name</label>
+    <input type="text" name="name" value="{{ volunteer.name }}" class="form-control">
+
+    <br>
+
+    <label class="copy">City</label>
+    <select class="form-control" name="city">
+      <option value="{{ volunteer.city }}">{{ volunteer.city }}</option>
+      <option value="Amsterdam">Amsterdam</option>
+      <option value="Berlin">Berlin</option>
+      <option value="Dublin">Dublin</option>
+      <option value="Hamburg">Hamburg</option>
+      <option value="Lisbon">Lisbon</option>
+      <option value="Ljubljana">Ljubljana</option>
+      <option value="London">London</option>
+      <option value="Madrid">Madrid</option>
+      <option value="Paris">Paris</option>
+      <option value="Prague">Prague</option>
+      <option value="Rome">Rome</option>
+      <option value="Stockholm">Stockholm</option>
+      <option value="Vilnius">Vilnius</option>
+    </select>
+
+    <br>
+
+    <button type="submit" class="btn btn-primary" id="transparent-btn">Edit</button>
+
+  </form>
+</div>
+
+<hr>
+
 <div class="form-group">
-
-  <label class="copy">Name</label>
-  <input type="text" name="name" value="{{ volunteer.name }}" class="form-control">
-
-  <br>
-
-  <label class="copy">City</label>
-  <select class="form-control" name="city">
-    <option value="{{ volunteer.city }}">{{ volunteer.city }}</option>
-    <option value="Amsterdam">Amsterdam</option>
-    <option value="Berlin">Berlin</option>
-    <option value="Dublin">Dublin</option>
-    <option value="Hamburg">Hamburg</option>
-    <option value="Lisbon">Lisbon</option>
-    <option value="Ljubljana">Ljubljana</option>
-    <option value="London">London</option>
-    <option value="Madrid">Madrid</option>
-    <option value="Paris">Paris</option>
-    <option value="Prague">Prague</option>
-    <option value="Rome">Rome</option>
-    <option value="Stockholm">Stockholm</option>
-    <option value="Vilnius">Vilnius</option>
-  </select>
-
-  <br>
-
-  <button type="submit" class="btn btn-primary" id="transparent-btn">Edit</button>
-
-  <hr>
+  <p class="copy3"> → To change your password, please verify your old one first
+  </p>
 
   <form method="POST" action="/volunteer/edit-volunteer-verify-password">
     <label class="copy">Old password</label>

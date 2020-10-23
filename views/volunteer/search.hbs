@@ -10,11 +10,11 @@
 {{!-- Search nav --}}
 <div>
   <form action="/volunteer/search/filter" class="search" method="GET">
-    <div >
+    <div>
       {{#if searchedCity}}
 
       <label class="copy">City</label>
-      <select class="form-control" name="city">
+      <select class="search-field" name="city">
         <option value="{{ searchedCity }}">{{ searchedCity }}</option>
         <option value="Amsterdam">Amsterdam</option>
         <option value="Berlin">Berlin</option>
@@ -34,7 +34,7 @@
       {{else}}
 
       <label class="copy">City</label>
-      <select class="form-control" name="city">
+      <select class="search-field" name="city">
         <option value="Amsterdam">Amsterdam</option>
         <option value="Berlin">Berlin</option>
         <option value="Dublin">Dublin</option>

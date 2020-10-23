@@ -16,32 +16,31 @@
         <div class="secondary-nav">
             <div class="radio">
                 <input type="radio" name="hoomanType" value="private" checked="checked">
-                <p class="copy" class="radio">Individual</p>
+                <p class="copy" class="radio">&nbsp;Individual</p>
             </div>
 
             <div class="radio">
                 <input type="radio" name="hoomanType" value="org">
-                <p class="copy" class="radio">Organisation</p>
+                <p class="copy" class="radio">&nbsp;Organisation</p>
             </div>
         </div>
+
+        <label class="copy">Name</label>
+        <input type="text" name="name" value="{{ owner.name }}" class="form-control">
+
+        <br>
+
+        <button type="submit" class="btn btn-primary" id="transparent-btn">Edit</button>
+
     </form>
 </div>
 
 <div class="form-group">
 
-    <label class="copy">Name</label>
-    <input type="text" name="name" value="{{ owner.name }}" class="form-control">
-
-    <br>
-
-    <label class="copy">City</label>
-    <input type="text" name="city" value="{{ owner.city }}" class="form-control">
-
-    <br>
-
-    <button type="submit" class="btn btn-primary" id="transparent-btn">Edit</button>
-
     <hr>
+    <p class="copy3"> → To change your password, please verify your old one first
+    </p>
+
 
     <form method="POST" action="/owner/edit-owner-verify-password">
         <label class="copy">Old password</label>

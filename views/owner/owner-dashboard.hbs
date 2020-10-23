@@ -2,15 +2,15 @@
 
 <hr>
 
-<h1>Welcome to your dashboard, owner!</h1>
+<h1>Welcome to your dashboard, {{doggoArr.0.myOwner.name}}!</h1>
 <p class="copy">
-    Here you can create dog profiles specifying the help required.
+    Click "Add a dog" to create profiles for each of your doggos and start getting contacted by volunteers!
 </p>
 
 
 <div class="secondary-nav">
-        <a href="/owner/{{doggoArr.0.myOwner._id}}/edit-owner" class="btn btn-primary">Edit my Profile</a>
-        <a href="/owner/add-a-dog" class="btn btn-primary">Add a dog</a>
+    <a href="/owner/{{doggoArr.0.myOwner._id}}/edit-owner" class="btn btn-primary">Edit my Profile</a>
+    <a href="/owner/add-a-dog" class="btn btn-primary">Add a dog</a>
 </div>
 
 <hr>
@@ -18,43 +18,41 @@
 <div class="dashboard">
 
 
-{{#each doggoArr}}
-<div class="card" style="width: 18rem;">
-    <div class="card-img-top">
-        <img class= "image" src="{{this.imageUrl}}"  onerror="this.src='/images/img_blank.jpg';" alt="Card image cap">
-    </div>
-    
-    <div class="card-body">
-     <h2 class="card-title">
-         {{this.name}}
-   
-     </h2>
-     <h5>
-         {{this.breed}}  
-     </h5>
-     <hr>
+    {{#each doggoArr}}
+    <div class="card" style="width: 18rem;">
+        <div class="card-img-top">
+            <img class="image" src="{{this.imageUrl}}" onerror="this.src='/images/img_blank.jpg';" alt="Card image cap">
+        </div>
+
+        <div class="card-body">
+            <h2 class="card-title">
+                {{this.name}}
+
+            </h2>
+            <h5>
+                {{this.breed}}
+            </h5>
+            <hr>
             <p class="card-text">
                 {{#if this.walkies}}
-                <p>Available for walkies!</p>
-                {{/if}}
-                {{#if this.foster}}
-                <p>Available for fostering!</p>
-                {{/if}}
-     <hr>
-                <div class="icons-profile">
-                <a  href="/owner/{{this._id}}/edit-a-dog" >
-                <img class="icon-card" src="/images/edit.svg" alt="edit">
+            <p>Available for walkies!</p>
+            {{/if}}
+            {{#if this.foster}}
+            <p>Available for fostering!</p>
+            {{/if}}
+            <hr>
+            <div class="icons-profile">
+                <a href="/owner/{{this._id}}/edit-a-dog">
+                    <img class="icon-card" src="/images/edit.svg" alt="edit">
                 </a>
-                <a href="/owner/{{this._id}}/delete" >
-                <img class="icon-card" src="/images/delete.svg" alt="delete">
+                <a href="/owner/{{this._id}}/delete">
+                    <img class="icon-card" src="/images/delete.svg" alt="delete">
                 </a>
-                <a  href="/owner/{{this._id}}/messages" >
-                <img class="icon-card" src="/images/message.svg" alt="message">
-                </a>   
-                </div> 
+                <a href="/owner/{{this._id}}/messages">
+                    <img class="icon-card" src="/images/message.svg" alt="message">
+                </a>
+            </div>
             </p>
+        </div>
     </div>
-</div>
-{{/each}}
-
-
+    {{/each}}

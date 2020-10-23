@@ -3,8 +3,8 @@
 
 <hr>
 
-<h1>Add a dog </h1>
-<p class="copy"> Fill some information about your dog for volunteers to find it.
+<h1>Add a dog</h1>
+<p class="copy"> Create a profile for your dog so volunteers can start contacting them!
 </p>
 
 
@@ -24,7 +24,12 @@
 
 {{/if}}
 
+<hr class="hidden">
+
 <form method="POST" action="/owner/add-a-dog" class="form-group">
+  <p class="copy3"> → Make sure to click "update image" after choosing a file to save image changes
+  </p>
+
   <input type="hidden" name="imageUrl" value="{{imagePath}}">
 
   <br>

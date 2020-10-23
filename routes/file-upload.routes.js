@@ -29,7 +29,7 @@ router.post('/updateImg/:doggoId', uploader.single('imageUrl'), (req, res, next)
 let imagePath = req.file.path 
 let id = req.params.doggoId
 
-  doggoModel.findByIdAndUpdate(id, { $set: {imageUrl: imagePath}})
+  DoggoModel.findByIdAndUpdate(id, { $set: {imageUrl: imagePath}})
     .then(() => {
       res.redirect(`/owner/${id}/edit-a-dog`)
     })

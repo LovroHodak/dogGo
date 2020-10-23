@@ -3,8 +3,8 @@
 
 <hr>
 
-<h1>Edit you dog's profile </h1>
-<p class="copy"> Here you can edit information about your dog.
+<h1>Edit {{toBeEditedDoggo.name}}'s profile </h1>
+<p class="copy"> Update their image or any information
 </p>
 
 <hr class="hidden">
@@ -14,7 +14,7 @@
 
 {{#if toBeEditedDoggo.imageUrl}}
 <div class="load-image">
-<img class="image" src="{{toBeEditedDoggo.imageUrl}}" alt="Doggo image">
+  <img class="image" src="{{toBeEditedDoggo.imageUrl}}" alt="Doggo image">
 </div>
 {{/if}}
 
@@ -23,6 +23,7 @@
   <input type="file" name="imageUrl">
 
   <button type="submit" class="btn btn-secondary" id="transparent-btn">update image</button>
+
 </form>
 
 <hr class="hidden">
@@ -30,6 +31,11 @@
 {{!-- /////----Form---/// --}}
 
 <form method="POST" action="/owner/{{toBeEditedDoggo._id}}/edit-a-dog" class="form-group">
+  <p class="copy3"> → Make sure to click "update image" after choosing a file to save image changes
+  </p>
+
+  <hr class="hidden">
+
   <input type="hidden" name="imageUrl" value="{{toBeEditedDoggo.imageUrl}}">
 
   <label class="copy">Name</label>
