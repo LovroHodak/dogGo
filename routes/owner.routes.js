@@ -15,7 +15,7 @@ router.get('/owner', (req, res) => {
     .populate('myOwner')
     .then((doggoArr) => {
       res.render('./owner/owner-dashboard', {doggoArr, ownerId})
-    }) 
+    })
 })
 
 
