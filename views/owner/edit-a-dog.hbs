@@ -11,11 +11,13 @@
 <hr class="hidden">
 
 {{!-- /////----Image---/// --}}
+
 {{#if toBeEditedDoggo.imageUrl}}
-<div class="load-image"></div>
-<img class="image" src="{{toBeEditedDoggo.imageUrl}}" alt="">
+<div class="load-image">
+<img class="image" src="{{toBeEditedDoggo.imageUrl}}" alt="Doggo image">
 </div>
 {{/if}}
+
 
 <form method="POST" action="/updateImg/{{toBeEditedDoggo._id}}" enctype="multipart/form-data">
   <input type="file" name="imageUrl">

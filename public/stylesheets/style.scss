@@ -57,8 +57,6 @@ body {
 }
 
 
-
-
 .profile-card {
   display: flex;
   flex-direction: row;
@@ -89,10 +87,6 @@ h1{
   font-weight: bold;
 }
 
-
-// .text-container {
-//   max-width: 400px;
-// }
 
 
 ///----- graphic elements---////
@@ -129,6 +123,7 @@ hr {
   justify-items: baseline;
   align-items:baseline ;
 }
+
 .checkbox {
   margin: 10px;
   padding: 10px;
@@ -148,7 +143,12 @@ hr {
   align-content: center;
 }
 
+.search-field {
+  border: solid 1px  lightgrey;
+  border-radius: 5px;
+}
 ///-----buttons---////
+
 .btn-primary{
   display: flex;
   align-items: flex-end;
@@ -267,6 +267,11 @@ html, body {
   padding-left: 30px;
 }
 
+
+.dog-card-text {
+  margin-left: 20px;
+}
+
 .load-image {
   width:200px;
   height:200px;
@@ -279,10 +284,20 @@ html, body {
 
 
 .image {
-  display:block; /*remove inline-block spaces*/
-  width:100%; /*make image stretch*/
-  // margin:-50.875% 0;
+ height: 100%;
+ object-fit: cover;
 }
+
+.profile-image {
+  width:100%; 
+  position: relative;
+  margin-top: 25px ;
+  overflow: hidden;
+  position: relative;
+  align-self: center; 
+
+}
+
 
 
 //----  Messanger----///
@@ -366,6 +381,16 @@ h7 {
   font-size: 1rem;
 }
 
+h5 {
+  font-size: 1,5rem;
+  line-height: 2rem;
+}
+
+
+.inbox {
+  // color:#ffde7d;
+  text-decoration: underline;
+}
 // ----hide elements----////
 
 .hidden {

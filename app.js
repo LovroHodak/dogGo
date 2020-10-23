@@ -79,6 +79,10 @@ const privateRoutes = (req, res, next) => {
   }
 }
 
+
+
+
+
 app.use(privateRoutes)
 
 const ownerRoutes = require('./routes/owner.routes');
