@@ -10,21 +10,6 @@
 
 </p>
 
-<div>
-  <form method="POST" action="/owner/{{volunteer._id}}/edit-owner" class="form-group">
-
-    <div class="secondary-nav">
-      <div class="radio">
-        <input type="radio" name="hoomanType" value="private" checked="checked">
-        <p class="copy" class="radio">Individual</p>
-      </div>
-
-      <div class="radio"></div>
-      <input type="radio" name="hoomanType" value="org">
-      <p class="copy" class="radio">Organisation</p>
-    </div>
-</div>
-
 <div class="form-group">
 
   <label class="copy">Name</label>
@@ -38,8 +23,6 @@
   <br>
 
   <button type="submit" class="btn btn-primary" id="transparent-btn">Edit</button>
-
-  </form>
 
   <hr>
 
@@ -80,6 +63,4 @@
     {{successMessage}}
   </div>
   {{/if}}
-</div>
-</form>
 </div>

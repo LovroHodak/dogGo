@@ -166,7 +166,7 @@ body: String
 
 ### Trello
 
-[Link to your trello board](https://trello.com/b/A0q880F3/doggo-app)
+[Trello board](https://trello.com/b/A0q880F3/doggo-app)
 
 ### Git
 

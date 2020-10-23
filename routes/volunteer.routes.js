@@ -129,18 +129,16 @@ router.get('/volunteer/:doggoId/delete', (req, res) => {
 router.post('/volunteer/edit-volunteer-verify-password', (req, res) => {
   const {submittedPassword} = req.body
   const volunteerEmail = req.session.loggedInUser.email
-  console.log(submittedPassword)
-  console.log(volunteerEmail)
 
   hoomanModel.findOne({email: volunteerEmail})
-    .then((hoomanData) => {
-      bcrypt.compare(submittedPassword, hoomanData.password)
+    .then((volunteer) => {
+      bcrypt.compare(submittedPassword, volunteer.password)
         .then((result) => {
           if (result) {
-            res.render('./volunteer/edit-volunteer', {passwordMessage: 'Password matches!'})
+            res.render('./volunteer/edit-volunteer', {passwordMessage: 'Password matches!', volunteer})
           }
           else {
-            res.status(500).render('./volunteer/edit-volunteer', {errorMessage: 'Password not matching'})
+            res.status(500).render('./volunteer/edit-volunteer', {errorMessage: 'Password not matching', volunteer})
           }
         })
     })
@@ -155,8 +153,8 @@ router.post('/volunteer/edit-volunteer-password', (req, res) => {
       bcrypt.hash(newPassword, salt)
         .then((hashedPassword) => {
           hoomanModel.findOneAndUpdate({email: volunteerEmail}, {$set: {password: hashedPassword}})
-            .then(() => {
-              res.render('./volunteer/edit-volunteer', {successMessage: 'Password successfully updated'})
+            .then((volunteer) => {
+              res.render('./volunteer/edit-volunteer', {successMessage: 'Password successfully updated', volunteer})
             })
         })
     })  

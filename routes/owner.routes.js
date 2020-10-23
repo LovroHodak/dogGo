@@ -1,7 +1,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const uploader = require('../config/cloudinary.config.js');
+var bcrypt = require('bcryptjs');
 
 const hoomanModel = require('../models/hooman.model')
 const doggoModel = require('../models/doggo.model')
@@ -97,6 +97,41 @@ router.post('/owner/:ownerId/edit-owner', (req, res) => {
     .catch((err) => {
       res.render('error')
     })
+})
+
+//editing owner password
+router.post('/owner/edit-owner-verify-password', (req, res) => {
+  const {submittedPassword} = req.body
+  const ownerEmail = req.session.loggedInUser.email
+
+  hoomanModel.findOne({email: ownerEmail})
+    .then((owner) => {
+      bcrypt.compare(submittedPassword, owner.password)
+        .then((result) => {
+          if (result) {
+            res.render('./owner/edit-owner', {passwordMessage: 'Password matches!', owner})
+          }
+          else {
+            res.status(500).render('./owner/edit-owner', {errorMessage: 'Password not matching', owner})
+          }
+        })
+    })
+})
+
+router.post('/owner/edit-owner-password', (req, res) => {
+    const {newPassword} = req.body
+    const ownerEmail = req.session.loggedInUser.email
+
+    bcrypt.genSalt(10)
+    .then((salt) => {
+      bcrypt.hash(newPassword, salt)
+        .then((hashedPassword) => {
+          hoomanModel.findOneAndUpdate({email: ownerEmail}, {$set: {password: hashedPassword}})
+            .then((owner) => {
+              res.render('./owner/edit-owner', {successMessage: 'Password successfully updated', owner})
+            })
+        })
+    })  
 })
 
 module.exports = router;
