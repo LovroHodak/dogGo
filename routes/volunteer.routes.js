@@ -9,6 +9,7 @@ const MessageModel = require('../models/message.model')
 
 router.get('/volunteer', (req, res) => {
   let volunteerId = req.session.loggedInUser._id
+  let volunteerName = req.session.loggedInUser.name
 
   HoomanModel.findById(volunteerId)
     .then((volunteer) => {
