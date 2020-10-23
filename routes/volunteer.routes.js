@@ -15,7 +15,6 @@ router.get('/volunteer', (req, res) => {
       MessageModel.find({volunteer: volunteerId})
         .populate('doggo')
         .then((volunteerMessArr) => {
-          console.log(volunteerMessArr)
             res.render('./volunteer/volunteer-dashboard', {volunteerMessArr, volunteerId, volunteer}) 
         })
     })
