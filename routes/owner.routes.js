@@ -14,7 +14,7 @@ router.get('/owner', (req, res) => {
   DoggoModel.find({myOwner: req.session.loggedInUser._id})
     .populate('myOwner')
     .then((doggoArr) => {
-      res.render('./owner/owner-dashboard', {doggoArr, ownerName, ownerId})
+      res.render('./owner/owner-dashboard', {doggoArr, ownerId})
     }) 
 })
 
