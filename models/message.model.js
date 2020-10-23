@@ -12,6 +12,6 @@ let messageSchema = new mongoose.Schema(
   }
 )
 
-let messageModel = mongoose.model('message', messageSchema)
+let MessageModel = mongoose.model('message', messageSchema)
 
-module.exports = messageModel
+module.exports = MessageModel

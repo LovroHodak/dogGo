@@ -5,38 +5,80 @@
 <h1>Edit your profile</h1>
 <p class="copy"> Wanna change something?
 
-<hr>
-<hr class="hidden">
+    <hr>
+    <hr class="hidden">
 
 </p>
 
-<div >
-<form method="POST" action="/owner/{{owner._id}}/edit-owner" class="form-group">
-  
-  <div class="secondary-nav">
-      <div class="radio">
-  <input type="radio" name="hoomanType" value="private" checked="checked"><p class="copy" class="radio">Individual</p>
-      </div>
+<div>
+    <form method="POST" action="/owner/{{owner._id}}/edit-owner" class="form-group">
 
-      <div class="radio"></div>
-  <input type="radio" name="hoomanType" value="org"><p class="copy" class="radio">Organisation</p>
-      </div>
- </div>
-  
-  <div class="form-group">
+        <div class="secondary-nav">
+            <div class="radio">
+                <input type="radio" name="hoomanType" value="private" checked="checked">
+                <p class="copy" class="radio">Individual</p>
+            </div>
 
-  <label class="copy">Name</label>
-  <input type="text" name="name" value="{{ owner.name }}" class="form-control">
-
-  <br>
-
-  <label class="copy">City</label>
-  <input type="text" name="city" value="{{ owner.city }}" class="form-control">
-
-  <br>
-
-  <button type="submit" class="btn btn-primary">Edit</button>
-
+            <div class="radio">
+                <input type="radio" name="hoomanType" value="org">
+                <p class="copy" class="radio">Organisation</p>
+            </div>
+        </div>
+    </form>
 </div>
-</form>
+
+<div class="form-group">
+
+    <label class="copy">Name</label>
+    <input type="text" name="name" value="{{ owner.name }}" class="form-control">
+
+    <br>
+
+    <label class="copy">City</label>
+    <input type="text" name="city" value="{{ owner.city }}" class="form-control">
+
+    <br>
+
+    <button type="submit" class="btn btn-primary" id="transparent-btn">Edit</button>
+
+    <hr>
+
+    <form method="POST" action="/owner/edit-owner-verify-password">
+        <label class="copy">Old password</label>
+        <input type="password" name="submittedPassword" class="form-control">
+        <button type="submit" class="btn btn-primary" id="transparent-btn">Verify</button>
+    </form>
+
+    <br>
+
+
+    {{#if passwordMessage}}
+
+    <div class="alert alert-success" role="alert">
+        {{passwordMessage}}
+    </div>
+
+    <form method="POST" action="/owner/edit-owner-password">
+        <label class="copy">New password</label>
+        <input type="password" name="newPassword" class="form-control">
+        <button type="submit" class="btn btn-primary">Change password</button>
+    </form>
+
+    {{else}}
+    {{#if errorMessage}}
+    <br>
+    <div class="alert alert-danger" role="alert">
+        {{errorMessage}}
+    </div>
+    {{/if}}
+
+    {{/if}}
+
+
+    {{#if successMessage}}
+    <div class="alert alert-success" role="alert">
+        {{successMessage}}
+    </div>
+    {{/if}}
+
 </div>

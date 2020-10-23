@@ -98,6 +98,10 @@ hr {
   align-items: center;
   align-content: center; }
 
+.search-field {
+  border: solid 1px  lightgrey;
+  border-radius: 5px; }
+
 .btn-primary {
   display: flex;
   align-items: flex-end;
@@ -179,6 +183,9 @@ html, body {
 .card-text {
   padding-left: 30px; }
 
+.dog-card-text {
+  margin-left: 20px; }
+
 .load-image {
   width: 200px;
   height: 200px;
@@ -189,10 +196,16 @@ html, body {
   align-self: center; }
 
 .image {
-  display: block;
-  /*remove inline-block spaces*/
+  height: 100%;
+  object-fit: cover; }
+
+.profile-image {
   width: 100%;
-  /*make image stretch*/ }
+  position: relative;
+  margin-top: 25px;
+  overflow: hidden;
+  position: relative;
+  align-self: center; }
 
 .box1 {
   width: 700px;
@@ -254,6 +267,13 @@ html, body {
 h7 {
   color: white;
   font-size: 1rem; }
+
+h5 {
+  font-size: 1,5rem;
+  line-height: 2rem; }
+
+.inbox {
+  text-decoration: underline; }
 
 .hidden {
   visibility: hidden; }

@@ -3,26 +3,60 @@ const router  = express.Router();
 
 var bcrypt = require('bcryptjs');
 
-const hoomanModel = require('../models/hooman.model')
+const HoomanModel = require('../models/hooman.model')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('landing');
+  if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('landing');
+  }
 });
 
 // signup
 router.get('/landing-signup', (req, res) => {
-  res.render('./start/landing-signup');
+    if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('./start/landing-signup');
+  }
+
 })
 
 // signup - owner
 router.get('/signup/owner', (req, res) => {
-  res.render('./start/signup-owner')
+    if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('./start/signup-owner')
+  }
 })
 
 // signup - volunteer
 router.get('/signup/volunteer', (req, res) => {
-  res.render('./start/signup-volunteer')
+    if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('./start/signup-volunteer')
+  }
+
 })
 
 // signup - post for both signup forms
@@ -68,7 +102,7 @@ router.post('/signup', (req, res) => {
     .then((salt) => {
       bcrypt.hash(password, salt)
         .then((hashedPassword) => {
-          hoomanModel.create({name, email, city, password: hashedPassword, hoomanType})
+          HoomanModel.create({name, email, city, password: hashedPassword, hoomanType})
             .then(() => {
               res.redirect('/login') //login page
             })
@@ -84,7 +118,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res) => {
   const {email, password} = req.body
 
-  hoomanModel.findOne({email: email})
+  HoomanModel.findOne({email: email})
     .then((hoomanData) => {
       if (!hoomanData) {
         res.status(500).render('./start/login', {errorMessage: 'User does not exist'})
@@ -112,10 +146,12 @@ router.post('/login', (req, res) => {
 
 
 
-// logout
+
 router.get("/logout", (req, res) => {
   req.session.destroy();
   res.redirect("/login");
 });
+
+
 
 module.exports = router;

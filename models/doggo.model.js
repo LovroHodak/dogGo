@@ -19,7 +19,7 @@ let doggoSchema = new mongoose.Schema(
     },
     city: {
       type: String,
-      enum: ['Amsterdam', 'Berlin', 'Bratislava', 'Dublin', 'Hamburg', 'Lisbon', 'London', 'Madrid', 'Paris', 'Prague', 'Rome', 'Stockholm', 'Vilnius']
+      enum: ['Amsterdam', 'Berlin', 'Dublin', 'Hamburg', 'Lisbon', 'Ljubljana', 'London', 'Madrid', 'Paris', 'Prague', 'Rome', 'Stockholm', 'Vilnius']
     },
     foster: Boolean,
     walkies: Boolean,
@@ -40,6 +40,6 @@ let doggoSchema = new mongoose.Schema(
 
 //require certain info before deployment!
 
-let doggoModel = mongoose.model('doggo', doggoSchema)
+let DoggoModel = mongoose.model('doggo', doggoSchema)
 
-module.exports = doggoModel
+module.exports = DoggoModel

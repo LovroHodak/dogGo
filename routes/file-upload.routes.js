@@ -2,7 +2,7 @@
 const express = require('express');
 const router  = express.Router();
 
-const doggoModel = require('../models/doggo.model')
+const DoggoModel = require('../models/doggo.model')
 
 
 // include CLOUDINARY:
@@ -34,12 +34,5 @@ let id = req.params.doggoId
       res.redirect(`/owner/${id}/edit-a-dog`)
     })
 })
-
-
-
-
-
-
-
 
 module.exports = router;

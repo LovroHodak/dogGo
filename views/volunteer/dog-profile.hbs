@@ -6,27 +6,37 @@
 <div class="card mb-3" style="max-width: 8000px;">
   <div class="row no-gutters">
     <div class="col-md-4">
-      <img src="{{foundDoggo.imageUrl}}" onerror="this.src='/images/img_blank.jpg';" class="card-img"
+    
+      <img class="image" src="{{foundDoggo.imageUrl}}" onerror="this.src='/images/img_blank.jpg';" class="card-img"
         alt="Doggo profile">
+    
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h2 class="card-title">Meet dog, {{foundDoggo.name}}!</h2>
+        <div class="dog-card-text">
+        <hr class="hidden">
+        <h2 class="card-title">Meet dog,&nbsp;<span class="bold">{{foundDoggo.name}}!</span></h2>
         <hr>
         <p class="card-text">
         <h5>
           <br>
-          Breed: {{ foundDoggo.breed }}
+          <span class="bold">Breed:</span>
+          {{ foundDoggo.breed }}
           <br>
-          Age: {{ foundDoggo.age}}
+          <span class="bold"> Age:</span>
+          {{ foundDoggo.age}}
           <br>
-          Size: {{ foundDoggo.size }}
+          <span class="bold">Size: </span>
+           {{ foundDoggo.size }}
           <br>
-          Description: {{ foundDoggo.description }}
+          <span class="bold">Description: </span>
+           {{ foundDoggo.description }}
           <br>
-          City: {{ capitalizedCityOnDogProfile }}
+          <span class="bold">City: </span>
+           {{ capitalizedCityOnDogProfile }}
           <br>
         </h5>
+        </p>
         <p class="card-text">
           <small class="text-muted">
             {{#if foundDoggo.walkies}}
@@ -41,6 +51,8 @@
 
         <div class="secondary-nav">
           <a href="/volunteer/{{foundDoggo._id}}/messages" class="btn btn-primary">Message</a>
+        </div>
+
         </div>
       </div>
     </div>

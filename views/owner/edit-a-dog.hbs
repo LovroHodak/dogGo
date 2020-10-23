@@ -11,11 +11,13 @@
 <hr class="hidden">
 
 {{!-- /////----Image---/// --}}
+
 {{#if toBeEditedDoggo.imageUrl}}
-<div class="load-image"></div>
-<img class="image" src="{{toBeEditedDoggo.imageUrl}}" alt="">
+<div class="load-image">
+<img class="image" src="{{toBeEditedDoggo.imageUrl}}" alt="Doggo image">
 </div>
 {{/if}}
+
 
 <form method="POST" action="/updateImg/{{toBeEditedDoggo._id}}" enctype="multipart/form-data">
   <input type="file" name="imageUrl">
@@ -77,10 +79,10 @@
     <option value="{{ toBeEditedDoggo.city }}">{{ toBeEditedDoggo.city }}</option>
     <option value="Amsterdam">Amsterdam</option>
     <option value="Berlin">Berlin</option>
-    <option value="Bratislava">Bratislava</option>
     <option value="Dublin">Dublin</option>
     <option value="Hamburg">Hamburg</option>
     <option value="Lisbon">Lisbon</option>
+    <option value="Ljubljana">Ljubljana</option>
     <option value="London">London</option>
     <option value="Madrid">Madrid</option>
     <option value="Paris">Paris</option>
