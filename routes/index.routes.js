@@ -7,22 +7,56 @@ const hoomanModel = require('../models/hooman.model')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
-  res.render('landing');
+  if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('landing');
+  }
 });
 
 // signup
 router.get('/landing-signup', (req, res) => {
-  res.render('./start/landing-signup');
+    if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('./start/landing-signup');
+  }
+
 })
 
 // signup - owner
 router.get('/signup/owner', (req, res) => {
-  res.render('./start/signup-owner')
+    if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('./start/signup-owner')
+  }
 })
 
 // signup - volunteer
 router.get('/signup/volunteer', (req, res) => {
-  res.render('./start/signup-volunteer')
+    if (req.session.loggedInUser) {
+    if (req.session.loggedInUser.hoomanType == "volunteer") {
+      res.redirect('/volunteer')
+    } else {
+      res.redirect('/owner')
+    }
+  } else {
+      res.render('./start/signup-volunteer')
+  }
+
 })
 
 // signup - post for both signup forms

@@ -12,10 +12,44 @@
   <form action="/volunteer/search/filter" class="search" method="GET">
     <div>
       {{#if searchedCity}}
-      <input class="search-field" type="search" placeholder="Enter a city" aria-label="Search" name="city"
-        value={{searchedCity}}>
+
+      <label class="copy">City</label>
+      <select class="form-control" name="city">
+        <option value="{{ searchedCity }}">{{ searchedCity }}</option>
+        <option value="Amsterdam">Amsterdam</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Dublin">Dublin</option>
+        <option value="Hamburg">Hamburg</option>
+        <option value="Lisbon">Lisbon</option>
+        <option value="Ljubljana">Ljubljana</option>
+        <option value="London">London</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Paris">Paris</option>
+        <option value="Prague">Prague</option>
+        <option value="Rome">Rome</option>
+        <option value="Stockholm">Stockholm</option>
+        <option value="Vilnius">Vilnius</option>
+      </select>
+
       {{else}}
-      <input class="search-field" type="search" placeholder="Enter a city" aria-label="Search" name="city">
+
+      <label class="copy">City</label>
+      <select class="form-control" name="city">
+        <option value="Amsterdam">Amsterdam</option>
+        <option value="Berlin">Berlin</option>
+        <option value="Dublin">Dublin</option>
+        <option value="Hamburg">Hamburg</option>
+        <option value="Lisbon">Lisbon</option>
+        <option value="Ljubljana">Ljubljana</option>
+        <option value="London">London</option>
+        <option value="Madrid">Madrid</option>
+        <option value="Paris">Paris</option>
+        <option value="Prague">Prague</option>
+        <option value="Rome">Rome</option>
+        <option value="Stockholm">Stockholm</option>
+        <option value="Vilnius">Vilnius</option>
+      </select>
+
       {{/if}}
     </div>
 

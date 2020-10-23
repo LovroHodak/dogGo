@@ -17,7 +17,7 @@
     },
     city: {
       type: String,
-      enum: ['Amsterdam', 'Berlin', 'Bratislava', 'Dublin', 'Hamburg', 'Lisbon', 'London', 'Madrid', 'Paris', 'Prague', 'Rome', 'Stockholm', 'Vilnius']
+      enum: ['Amsterdam', 'Berlin', 'Dublin', 'Hamburg', 'Lisbon', 'Ljubljana', 'London', 'Madrid', 'Paris', 'Prague', 'Rome', 'Stockholm', 'Vilnius']
     },
     hoomanType: {
       type: String,
