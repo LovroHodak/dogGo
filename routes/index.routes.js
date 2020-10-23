@@ -3,7 +3,7 @@ const router  = express.Router();
 
 var bcrypt = require('bcryptjs');
 
-const hoomanModel = require('../models/hooman.model')
+const HoomanModel = require('../models/hooman.model')
 
 /* GET home page */
 router.get('/', (req, res, next) => {
@@ -102,7 +102,7 @@ router.post('/signup', (req, res) => {
     .then((salt) => {
       bcrypt.hash(password, salt)
         .then((hashedPassword) => {
-          hoomanModel.create({name, email, city, password: hashedPassword, hoomanType})
+          HoomanModel.create({name, email, city, password: hashedPassword, hoomanType})
             .then(() => {
               res.redirect('/login') //login page
             })
@@ -118,7 +118,7 @@ router.get('/login', (req, res) => {
 router.post('/login', (req, res) => {
   const {email, password} = req.body
 
-  hoomanModel.findOne({email: email})
+  HoomanModel.findOne({email: email})
     .then((hoomanData) => {
       if (!hoomanData) {
         res.status(500).render('./start/login', {errorMessage: 'User does not exist'})

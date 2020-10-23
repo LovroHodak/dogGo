@@ -40,6 +40,6 @@ let doggoSchema = new mongoose.Schema(
 
 //require certain info before deployment!
 
-let doggoModel = mongoose.model('doggo', doggoSchema)
+let DoggoModel = mongoose.model('doggo', doggoSchema)
 
-module.exports = doggoModel
+module.exports = DoggoModel

@@ -1,22 +1,22 @@
 const express = require('express');
 const router  = express.Router();
 
-const hoomanModel = require('../models/hooman.model')
-const doggoModel = require('../models/doggo.model')
-const messageModel = require('../models/message.model')
+const HoomanModel = require('../models/hooman.model')
+const DoggoModel = require('../models/doggo.model')
+const MessageModel = require('../models/message.model')
 
 //from volunteer's side - either creates a new message or comes back to an old one
 router.get('/volunteer/:doggoId/messages', (req, res) => {
   let id = req.params.doggoId
   let volunteerId = req.session.loggedInUser._id
 
-  messageModel.findOne({doggo: id, volunteer: volunteerId}) 
+  MessageModel.findOne({doggo: id, volunteer: volunteerId}) 
     .then((message) => {
         if (message) {
           res.redirect(`/volunteer/${message._id}`)
         }
         else {
-          messageModel.create({doggo: id, volunteer: volunteerId})
+          MessageModel.create({doggo: id, volunteer: volunteerId})
           .then((newMess) => {
             res.redirect(`/volunteer/${newMess._id}`)
           })
@@ -29,7 +29,7 @@ router.get('/volunteer/:doggoId/messages', (req, res) => {
 router.get('/volunteer/:messId', (req, res) => {
   let id = req.params.messId
 
-  messageModel.findById(id)
+  MessageModel.findById(id)
     .populate('volunteer') 
     .populate('doggo')
     .then((convo) => {
@@ -47,9 +47,9 @@ router.post('/volunteer/:messageId', (req, res) => {
 
   let hoomanData = req.session.loggedInUser
 
-  messageModel.findByIdAndUpdate(messId, {$push: {body}})
+  MessageModel.findByIdAndUpdate(messId, {$push: {body}})
     .then((message) => {
-      hoomanModel.findByIdAndUpdate(hoomanData._id, {$push: {myDoggos: message.doggo}})
+      HoomanModel.findByIdAndUpdate(hoomanData._id, {$push: {myDoggos: message.doggo}})
           .then(() => {
             res.redirect(`/volunteer/${messId}`)
           })
@@ -60,7 +60,7 @@ router.post('/volunteer/:messageId', (req, res) => {
 router.get('/owner/:doggoId/messages', (req, res) => {
 let id = req.params.doggoId
 
-  messageModel.find({doggo:id})
+  MessageModel.find({doggo:id})
     .populate('volunteer')
     .then((messageArr) => {
       res.render('./owner/messages',{messageArr})
@@ -71,7 +71,7 @@ let id = req.params.doggoId
 router.get('/owner/:messageId', (req, res) => {
   let id = req.params.messageId
  
-  messageModel.findById(id)
+  MessageModel.findById(id)
   .populate('doggo')
   .populate('volunteer')
   .then((message) => {
@@ -88,10 +88,10 @@ router.post('/owner/:doggoId/:messageId', (req,res) => {
    let id = req.params.messageId
    let doggoId = req.params.doggoId
 
-   doggoModel.findById(doggoId)
+   DoggoModel.findById(doggoId)
     .then((doggo) => {
       let body = doggo.name + " said: " + req.body.body
-      messageModel.findByIdAndUpdate(id , {$push: {body}} )
+      MessageModel.findByIdAndUpdate(id , {$push: {body}} )
         .then(() => {
         res.redirect(`/owner/${id}`)
         })
@@ -103,7 +103,7 @@ router.get('/owner/:doggoId/:messId/delete', (req, res) => {
   let doggoId = req.params.doggoId
   let messageId = req.params.messId
 
-  messageModel.findByIdAndDelete(messageId)
+  MessageModel.findByIdAndDelete(messageId)
     .then(() => {
       res.redirect(`/owner/${doggoId}/messages`)
     })

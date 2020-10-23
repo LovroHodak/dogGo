@@ -33,6 +33,6 @@
 
   )
 
-  let hoomanModel = mongoose.model('hooman', hoomanSchema)
+  let HoomanModel = mongoose.model('hooman', hoomanSchema)
 
-  module.exports = hoomanModel
+  module.exports = HoomanModel
