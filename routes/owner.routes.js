@@ -9,12 +9,13 @@ const MessageModel = require('../models/message.model')
 
 //rendering the dashboard
 router.get('/owner', (req, res) => {
-let ownerName = req.session.loggedInUser.name
+  let ownerId = req.session.loggedInUser._id
+  let ownerName = req.session.loggedInUser.name
 
   DoggoModel.find({myOwner: req.session.loggedInUser._id})
     .populate('myOwner')
     .then((doggoArr) => {
-      res.render('./owner/owner-dashboard', {doggoArr, ownerName})
+      res.render('./owner/owner-dashboard', {doggoArr, ownerName, ownerId})
     }) 
 })
 
