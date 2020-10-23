@@ -74,29 +74,29 @@ router.post('/signup', (req, res) => {
     }
   }
 
-// let emailReg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
-//     if (!emailReg.test(email)) {
-//       if (req.body.hoomanType == "volunteer") {
-//         res.status(500).render('./start/signup-volunteer', {errorMessage: 'Please enter a valid email address'})
-//         return;
-//       }
-//       else {
-//         res.status(500).render('./start/signup-owner', {errorMessage: 'Please enter a valid email address'})
-//         return;
-//       }
-// }
+let emailReg = new RegExp(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)
+    if (!emailReg.test(email)) {
+      if (req.body.hoomanType == "volunteer") {
+        res.status(500).render('./start/signup-volunteer', {errorMessage: 'Please enter a valid email address'})
+        return;
+      }
+      else {
+        res.status(500).render('./start/signup-owner', {errorMessage: 'Please enter a valid email address'})
+        return;
+      }
+}
 
-// let passwordReg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
-//   if (!passwordReg.test(password)) {
-//       if (req.body.hoomanType == "volunteer") {
-//         res.status(500).render('./start/signup-volunteer', {errorMessage: 'Please enter a valid password'})
-//         return;
-//       }
-//       else {
-//         res.status(500).render('./start/signup-owner', {errorMessage: 'Please enter a valid password'})
-//         return;
-//       }
-// }
+let passwordReg = new RegExp(/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{8,15}$/)
+  if (!passwordReg.test(password)) {
+      if (req.body.hoomanType == "volunteer") {
+        res.status(500).render('./start/signup-volunteer', {errorMessage: 'Please enter a valid password'})
+        return;
+      }
+      else {
+        res.status(500).render('./start/signup-owner', {errorMessage: 'Please enter a valid password'})
+        return;
+      }
+}
 
   bcrypt.genSalt(10)
     .then((salt) => {
