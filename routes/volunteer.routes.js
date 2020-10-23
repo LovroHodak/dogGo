@@ -9,13 +9,15 @@ const MessageModel = require('../models/message.model')
 
 router.get('/volunteer', (req, res) => {
   let volunteerId = req.session.loggedInUser._id
-  let volunteerName = req.session.loggedInUser.name
 
-  MessageModel.find({volunteer: volunteerId})
-    .populate('doggo')
-    .then((volunteerMessArr) => {
-      console.log(volunteerMessArr)
-        res.render('./volunteer/volunteer-dashboard', {volunteerMessArr, volunteerName, volunteerId}) 
+  HoomanModel.findById(volunteerId)
+    .then((volunteer) => {
+      MessageModel.find({volunteer: volunteerId})
+        .populate('doggo')
+        .then((volunteerMessArr) => {
+          console.log(volunteerMessArr)
+            res.render('./volunteer/volunteer-dashboard', {volunteerMessArr, volunteerId, volunteer}) 
+        })
     })
 })
 
