@@ -10,7 +10,7 @@
 {{!-- Search nav --}}
 <div>
   <form action="/volunteer/search/filter" class="search" method="GET">
-    <div>
+    <div >
       {{#if searchedCity}}
       <input class="search-field" type="search" placeholder="Enter a city" aria-label="Search" name="city"
         value={{searchedCity}}>
@@ -23,12 +23,12 @@
       {{#if foster}}
       <input type="checkbox" name="foster" value="true" checked="true">
       <label>
-        <p class="copy"> Foster </p>
+        <p class="copy"> &nbsp;Foster </p>
       </label>
       {{else}}
       <input type="checkbox" name="foster" value="true">
       <label>
-        <p class="copy"> Foster </p>
+        <p class="copy"> &nbsp;Foster </p>
       </label>
       {{/if}}
     </div>
@@ -37,12 +37,12 @@
       {{#if walkies}}
       <input type="checkbox" name="walkies" value="true" checked="true">
       <label>
-        <p class="copy"> Walkies </p>
+        <p class="copy"> &nbsp;Walkies </p>
       </label>
       {{else}}
       <input type="checkbox" name="walkies" value="true">
       <label>
-        <p class="copy"> Walkies </p>
+        <p class="copy"> &nbsp;Walkies </p>
       </label>
       {{/if}}
     </div>
